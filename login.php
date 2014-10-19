@@ -30,9 +30,13 @@
     ?>
 
     <form action="requisicao.php" method="post">
-      Primeiro nome:
+      Login:<br>
       <input type="text" name="login">
+	  <br>
+	  Senha:
+	  <br>
       <input type="text" name="senha">
+	  <br>
       <input type="submit" value="Entrar">
     </form>
 
