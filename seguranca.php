@@ -4,7 +4,8 @@ session_start();
 
 function verificaSessao()
 {
-	return $_SESSION["sessaoAtiva"];
+	if($_SESSION["sessaoAtiva"] == false)
+		header("Location: login.php");
 }
 
 function validaLogin($login, $senha)

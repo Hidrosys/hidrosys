@@ -19,11 +19,7 @@
   <body>
     <?php
       include("seguranca.php");
-
-      if(verificaSessao() == false)
-      {
-        header("Location: login.php");
-      }
+      verificaSessao();
     ?>
     <div class="panel panel-default">
       <div class="panel-body">
