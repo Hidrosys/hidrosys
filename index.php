@@ -17,6 +17,14 @@
     <![endif]-->
   </head>
   <body>
+    <?php
+      include("seguranca.php");
+
+      if(verificaSessao() == false)
+      {
+        header("Location: login.php");
+      }
+    ?>
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row">
@@ -39,12 +47,12 @@
             <ul class="nav nav-pills">
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  login@logado.com <span class="caret"></span>
+                  <?php echo getLogin(); ?> <span class="caret"></span>
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
                   <li class="item">
-                    <a href="#">Logoff</a>
+                    <a href="login.php?logoff=true">Logoff</a>
                   </li>
                 </ul>
               </li>      
