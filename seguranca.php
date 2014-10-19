@@ -2,20 +2,14 @@
 
 session_start();
 
-$_SESSION["sessaoAtiva"] = false;
-$_SESSION["login"] = "thiago";
-
 function verificaSessao()
 {
-	//return true;
-	//global $_SESSION["sessaoAtiva"];
 	return $_SESSION["sessaoAtiva"];
 }
 
 function validaLogin($login, $senha)
 {
-	//global $sessaoAtiva;
-	if(strcmp($login, "thiago") == 0 AND strcmp($senha, "123") == 0)
+	if(($login == "thiago" AND $senha == "123") OR ($login == "renan" AND $senha == "123"))
 	{
 		iniciaSessao($login, $senha);
 		return true;
@@ -29,21 +23,17 @@ function validaLogin($login, $senha)
 
 function iniciaSessao($login, $senha)
 {
-	//global $_SESSION["sessaoAtiva"];
 	$_SESSION["sessaoAtiva"] = true;
+	$_SESSION["login"] = $login;
 }
 
 function encerraSessao()
 {
-	//global $_SESSION["sessaoAtiva"];
-	$_SESSION["sessaoAtiva"] = false;
 	session_destroy();
-	//header("Location: login.php");
 }
 
 function getLogin()
 {
-	//global $_SESSION["login"];
 	return $_SESSION["login"];
 }
 
