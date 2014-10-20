@@ -22,8 +22,8 @@
       verificaSessao();
     ?>
   	<?php
-      include("templatepag.php");
-      template("principal");    
+    	include("templatepag.php");
+    	template("clientes");    
   	?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

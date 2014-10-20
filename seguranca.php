@@ -10,7 +10,14 @@ function verificaSessao()
 
 function validaLogin($login, $senha)
 {
-	if(($login == "thiago" AND $senha == "123") OR ($login == "renan" AND $senha == "123"))
+	$conexao = mysql_connect("localhost", "root", "123456");
+	mysql_select_db("hidrosys", $conexao);
+
+	$query = "SELECT * FROM usuarios WHERE login = '".$login."'";
+	$result = mysql_query($query);
+	$consulta = mysql_fetch_array($result);
+
+	if($consulta["login"] == $login AND $consulta["senha"] == $senha)
 	{
 		iniciaSessao($login, $senha);
 		return true;
@@ -20,6 +27,9 @@ function validaLogin($login, $senha)
 		encerraSessao();
 		return false;
 	}
+
+	mysql_free_result($result);
+	mysql_close($conecta);
 }
 
 function iniciaSessao($login, $senha)
