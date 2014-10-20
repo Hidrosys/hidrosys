@@ -51,6 +51,44 @@
 		{
 			return $this->nome;
 		}
+		/*public function getSenha()
+		{
+			return $this->senha;
+		}*/ //Necessário?
+		public function getEmail()
+		{
+			return $this->email;
+		}
+		public function getTelefone()
+		{
+			return $this->telefone;
+		}
+		public function getTipo()
+		{
+			return $this->tipo;
+		}
+		public function getID()
+		{
+			return $this->id;
+		}
+		public function modTelefone($telefone)
+		{
+			$this->telefone = $telefone;
+		}
+		public function modEmail($email)
+		{
+			$this->email = $email;
+		}
+		public function modSenha($senha)
+		{
+			$this->senha = $senha;
+			$sencrip = $this->cript();
+			$this->senha = $sencrip;			
+		}
+		public function modLogin($login)
+		{
+			$this->login = $login;
+		}
 		
 	}
 	function consultaBD($login_entra)
