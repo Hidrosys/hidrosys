@@ -1,14 +1,10 @@
 <?php
 function template()
-{
-	if(verificaSessao() == false)
-    {
-      header("Location: login.php");
-    }
-    	
-	echo '<div class="panel panel-default">
+{    	
+	echo '
+    <div class="panel panel-default">
       <div class="panel-body">
-        <div class="row">
+        <div class="row-fluid">
 
           <div class="col-xs-2"><h3>HIDROSYS</h3></div>
 
@@ -24,11 +20,11 @@ function template()
             </ul>
           </div>
 
-          <div class="col-xs-2" style="padding-top:12px">
+          <div class="col-xs-2" style="padding-top:12px;">
             <ul class="nav nav-pills">
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <?php echo getLogin(); ?> <span class="caret"></span>
+                  '. getLogin() . '<span class="caret"></span>
                 </a>
 
                 <ul class="dropdown-menu" role="menu">

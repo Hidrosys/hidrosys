@@ -22,26 +22,44 @@
       include("seguranca.php");
       if(isset($_GET["logoff"]) == true)
       {
-        if($_GET["logoff"] == "true")
+        if($_GET["logoff"] == true)
         {
           encerraSessao();
         }
       }
     ?>
 
-    <form action="requisicao.php" method="post">
-      Login:<br>
-      <input type="text" name="login">
-	  <br>
-	  Senha:
-	  <br>
-      <input type="text" name="senha">
-	  <br>
-      <input type="submit" value="Entrar">
-    </form>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
 
-    
+          <div class="col-xs-2"><h3>HIDROSYS</h3></div>
+        </div>
+      </div>
+    </div>
 
+    <div class="col-xs-4" style="margin: 8% auto auto; float: none;">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Efetuar login</h3>
+        </div>
+        <div class="panel-body">
+          
+          <form role="form" method="post" action="requisicao.php">
+            <div class="form-group">
+              <label>Login</label>
+              <input type="login" class="form-control" name="login" placeholder="Login">
+            </div>
+            <div class="form-group">
+              <label>Senha</label>
+              <input type="password" class="form-control" name="senha" placeholder="Senha">
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </form>
+
+        </div>
+      </div>    
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
