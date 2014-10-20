@@ -16,14 +16,15 @@
 			return $criptografada;
 		}
 		
-		public function __construct($login, $senha, $nome, $email, $telefone, $tipo)
+		public function __construct($login, $senha, $nome, $email, $telefone, $tipo, $id)
 		{
 			$this->login = $login;			
 			$this->senha = $senha;
 			$this->nome = $nome;
 			$this->email = $email;
 			$this->telefone = $telefone;
-			$this->tipo = $tipo;			
+			$this->tipo = $tipo;
+			$this->id = $id;			
 		}
 		
 		public function bdupdate()
@@ -46,9 +47,21 @@
 			$result = mysqli_query($conexao, $query);
 			mysqli_close($conexao);
 		}
+		public function getNome()
+		{
+			return $this->nome;
+		}
 		
 	}
-$usuario_ativo = new Usuario("lupus", "homem tuarao", "Fabiano Coelho Junior", "fabianocoelho06@gmail.com", "36626777", 1);
-$usuario_ativo->bdupdate();
-echo "Sucesso!<br>";
+	function consultaBD($login_entra)
+	{
+		$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");		
+
+		$query = "SELECT * FROM usuarios WHERE login = '".$login_entra."'";
+		$result = mysqli_query($conexao, $query);
+		$consulta = mysqli_fetch_array($result);
+		$insta = new Usuario($login_entra, $consulta["senha"], $consulta["nome"], $consulta["email"], $consulta["telefone"], $consulta["tipo"], $consulta["id"]);
+		mysqli_close($conexao);
+		return $insta;
+	}
 ?>
