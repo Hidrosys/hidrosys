@@ -17,7 +17,7 @@ function validaLogin($login, $senha)
 	$result = mysql_query($query);
 	$consulta = mysql_fetch_array($result);
 
-	if($consulta["login"] == $login AND $consulta["senha"] == $senha)
+	if($consulta["login"] == $login AND $consulta["senha"] == base64_encode($senha))
 	{
 		iniciaSessao($login, $senha);
 		return true;
