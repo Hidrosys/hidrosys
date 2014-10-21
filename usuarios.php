@@ -20,6 +20,102 @@
     <?php    
       include("header.php");
     ?>
+
+    <div class="col-xs-4" style="margin: 4% auto auto; float: none; width: 950px;">
+      <div class="panel panel-default">
+        <div style="height: 35px">
+          <table class="table table-striped">
+            <thead>
+              <tr class="info">
+                <td style="width: 9%">
+                  ID
+                </td>
+                <td style="width: 35%">
+                  Nome
+                </td>
+                <td style="width: 18%">
+                  Login
+                </td>
+                <td style="width: 26.5%">
+                  Email
+                </td>
+                <td style="width: 14%">
+                  Telefone
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div style="max-height: 400px; overflow: auto; width: 100%">
+        <table class="table table-striped header-fixed">          
+          <body>
+            <tr>
+              <td class="col-xs-1">
+                1
+              </td>
+              <td class="col-xs-4">
+                Thiago
+              </td>
+              <td class="col-xs-2">
+                thiago
+              </td>
+              <td class="col-xs-3">
+                thiago.carvp@gmail.com
+              </td>
+              <td class="col-xs-1">
+              9999-9999
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                2
+              </td>
+              <td>
+                Renan
+              </td>
+              <td>
+                renan
+              </td>
+              <td>
+                renansd@hotmail.com
+              </td>
+              <td>
+              9999-9999
+              </td>
+            </tr>
+
+            <?php
+              $i = 0;
+              while($i < 20)
+              {
+                echo '
+                  <tr>
+              <td>
+                2
+              </td>
+              <td>
+                Renan
+              </td>
+              <td>
+                renan
+              </td>
+              <td>
+                renansd@hotmail.com
+              </td>
+              <td>
+              9999-9999
+              </td>
+            </tr>
+                ';
+                $i += 1;
+              }
+            ?>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

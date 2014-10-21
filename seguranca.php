@@ -2,6 +2,12 @@
 
 session_start();
 
+if (!isset($_SESSION['start_time'])) $_SESSION['start_time']=time();
+
+if( (time()- $_SESSION['start_time']) > 30*60) {
+	encerraSessao();
+} 
+
 function verificaSessao()
 {
 	if($_SESSION["sessaoAtiva"] == false)
@@ -40,12 +46,18 @@ function iniciaSessao($login, $senha)
 
 function encerraSessao()
 {
+	header("Location: login.php");
 	session_destroy();
 }
 
 function getLogin()
 {
 	return $_SESSION["login"];
+}
+
+function getNome()
+{
+	return $_SESSION["nome"];
 }
 
 ?>
