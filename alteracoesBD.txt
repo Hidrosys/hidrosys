@@ -1,7 +1,4 @@
 /////////// Alteração em 20/10/2014
---
--- Estrutura da tabela `usuarios`
---
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -15,12 +12,24 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Extraindo dados da tabela `usuarios`
---
-
 INSERT INTO `usuarios` (`id`, `nome`, `login`, `senha`, `email`, `telefone`, `tipo`) VALUES
 (1, 'Thiago', 'thiago', '123', '', '', 1),
 (2, 'Renan', 'renan', '123', '', '', 1);
+
+/////////////////////////////////////////
+
+
+/////////// Alteração em 22/10/2014
+
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` text NOT NULL,
+  `endereco` text NOT NULL,
+  `cep` text NOT NULL,
+  `telefone` text NOT NULL,
+  `cpf_cnpj` text NOT NULL,
+  `email` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /////////////////////////////////////////

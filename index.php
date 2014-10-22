@@ -21,6 +21,10 @@
       include("header.php");
   	?>
 
+    <span class="glyphicon glyphicon-tint" style="float: left; margin-left: 460px; margin-top: 200px; font-size: 50px"></span>
+    <h1 style="margin-top: 170px; float: right; margin-right: 250px; font-size: 100px;">HIDROLAR</h1>
+    <h1 style="margin-left: 550px;">Aquecedores Solares</h1>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

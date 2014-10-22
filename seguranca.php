@@ -4,7 +4,7 @@ session_start();
 
 if (!isset($_SESSION['start_time'])) $_SESSION['start_time']=time();
 
-if( (time()- $_SESSION['start_time']) > 30*60) {
+if( (time()- $_SESSION['start_time']) > 100*60) {
 	encerraSessao();
 } 
 

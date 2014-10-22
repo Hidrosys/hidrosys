@@ -20,6 +20,108 @@
     <?php    
     	include("header.php");
   	?>
+
+    <script type="text/javascript">
+      var selected_row = -1;
+
+      function selectRow(row)
+      {
+        document.getElementById("input_row").value = row;
+
+        if(selected_row != -1)
+        {
+          document.getElementById("r"+selected_row).style.background="#FFFFFF";
+        }
+        document.getElementById("r"+row).style.background="#DDDDDD";
+
+        selected_row = row;
+      }
+    </script>
+
+    <form method="POST" action="usuarios.php">
+
+      <input type="hidden" id="input_row" name="selected_row" value="0">
+      <!-- <input type="submit" value="OK"> -->
+
+    </form>
+
+    <div class="col-xs-4" style="margin: 0 auto auto; float: none; width: 950px; height: 20px;">
+      <input type="login" class="form-control" id="inputSearch" placeholder="Pesquisa" style="float: left; width: 80%">
+      <select class="form-control" style="width: 14%; float: left; margin-left: 8px">
+        <option>Nome</option>
+        <option>CPF/CNPJ</option>
+        <option>ID</option>
+        <option>Email</option>
+        <option>Telefone</option>
+      </select>
+      <button type="button" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-search"></span></button>
+    </div>
+
+    <div class="col-xs-4" style="min-height: 410px; max-height: 410px; margin: 2% auto auto; float: none; width: 950px;">
+      <div class="panel panel-default">
+        <div style="height: 35px;">
+          <table class="table table-striped">
+            <thead>
+              <tr class="info">
+                <td style="width: 9.5%">
+                  ID
+                </td>
+                <td style="width: 40%">
+                  Nome
+                </td>
+                <td style="width: 17%">
+                  Telefone
+                </td>
+                <td style="width: 30%">
+                  Email
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div style="min-height: 360px; max-height: 360px; overflow-y: scroll; width: 100%">
+        <table class="table header-fixed" data-single-select="true">
+          <body>
+            <?php
+              $conexao = mysql_connect("localhost", "root", "123456");
+              mysql_select_db("hidrosys", $conexao);
+
+              $query = "SELECT * FROM clientes";
+              $result = mysql_query($query);
+              while($consulta = mysql_fetch_array($result))
+              {
+                echo
+                '<tr id="r' . $consulta["id"] . '" onclick="selectRow('.$consulta["id"].');" >
+                  <td
+                  <td style="width: 10%">
+                    '.$consulta["id"].
+                  '</td>
+                  <td style="width: 42%">
+                    '.$consulta["nome"].
+                  '</td>
+                  <td style="width: 14%">
+                    '.$consulta["telefone"].
+                  '</td>
+                  <td style="width: 14%">
+                    '.$consulta["email"].
+                  '</td>
+                </tr>';
+              }
+            ?>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default col-xs-4" style="margin-left: auto; margin-right: auto; float: none; width: 921px; min-height: 50px">
+      <div class="panel-body">
+        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-plus" style="padding-right: 10px"></span>Adicionar</button>
+        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-eye-open" style="padding-right: 10px"></span>Visualizar</button>
+        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-pencil" style="padding-right: 10px"></span>Alterar</button>
+        <button type="button" class="btn btn-primary" style="width: 150px; float: left;"><span class="glyphicon glyphicon-minus" style="padding-right: 10px"></span>Remover</button>
+      </div>
+    </div>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
