@@ -83,12 +83,10 @@
         <table class="table header-fixed" data-single-select="true">
           <body>
             <?php
-              $conexao = mysql_connect("localhost", "root", "123456");
-              mysql_select_db("hidrosys", $conexao);
-
+              $conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
               $query = "SELECT * FROM clientes";
-              $result = mysql_query($query);
-              while($consulta = mysql_fetch_array($result))
+              $result = mysqli_query($conexao, $query);
+              while($consulta = mysqli_fetch_array($result))
               {
                 echo
                 '<tr id="r' . $consulta["id"] . '" onclick="selectRow('.$consulta["id"].');" >

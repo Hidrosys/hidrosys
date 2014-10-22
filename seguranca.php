@@ -16,12 +16,11 @@ function verificaSessao()
 
 function validaLogin($login, $senha)
 {
-	$conexao = mysql_connect("localhost", "root", "123456");
-	mysql_select_db("hidrosys", $conexao);
-
+	$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
+	
 	$query = "SELECT * FROM usuarios WHERE login = '".$login."'";
-	$result = mysql_query($query);
-	$consulta = mysql_fetch_array($result);
+	$result = mysqli_query($conexao, $query);
+	$consulta = mysqli_fetch_array($result);
 
 	if($consulta["login"] == $login AND $consulta["senha"] == base64_encode($senha))
 	{
@@ -34,8 +33,8 @@ function validaLogin($login, $senha)
 		return false;
 	}
 
-	mysql_free_result($result);
-	mysql_close($conecta);
+	mysqli_free_result($result);
+	mysqli_close($conecta);
 }
 
 function iniciaSessao($login, $senha)
