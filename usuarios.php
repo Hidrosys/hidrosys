@@ -121,12 +121,49 @@
 
     <div class="panel panel-default col-xs-4" style="margin-left: auto; margin-right: auto; float: none; width: 921px; min-height: 50px">
       <div class="panel-body">
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-plus" style="padding-right: 10px"></span>Adicionar</button>
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-eye-open" style="padding-right: 10px"></span>Visualizar</button>
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-pencil" style="padding-right: 10px"></span>Alterar</button>
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left;"><span class="glyphicon glyphicon-minus" style="padding-right: 10px"></span>Remover</button>
+        <button type="button" class="btn btn-primary" onclick='adicionar()' id='1' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-plus" style="padding-right: 10px"></span>Adicionar</button>
+        <button type="button" class="btn btn-primary" onclick='vizu()' id='2' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-eye-open" style="padding-right: 10px"></span>Visualizar</button>
+        <button type="button" class="btn btn-primary" onclick='alterar()' id='3' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-pencil" style="padding-right: 10px"></span>Alterar</button>
+        <button type="button" class="btn btn-primary" onclick='removerr()' id='Botao4' style="width: 150px; float: left;"><span class="glyphicon glyphicon-minus" style="padding-right: 10px"></span>Remover</button>
       </div>
     </div>
+	<script type="text/javascript">
+	function adicionar(){
+	window.location.replace("/hidrosys/altusuario.php");
+	}
+	/*function vizu(){
+	 $.ajax({
+	  type: "POST",
+	  url: "classeusuario.php",
+	  data: { login: document.getElementById("input_row").value }
+	}).done(function( msg ) {
+	  alert( "Data Saved: " + msg );
+	});    
+
+		}
+	function alterar(){
+	 $.ajax({
+	  type: "POST",
+	  url: "classeusuario.php",
+	  data: { login: document.getElementById("input_row").value }
+	}).done(function( msg ) {
+	  alert( "Data Saved: " + msg );
+	});    
+
+		}*/
+	
+		
+	function removerr(){
+	 $.ajax({
+	  type: "POST",
+	  url: "classeusuario.php",
+	  data: { opt:"4", id: document.getElementById("input_row").value }
+	}).done(function( msg ) {
+	  window.location.replace("/hidrosys/usuarios.php");
+	});    
+
+		}
+	</script>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
