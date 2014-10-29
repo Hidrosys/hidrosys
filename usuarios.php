@@ -144,16 +144,17 @@
 			document.alt.submit();
 		}		
 	}
-	/*function alterar(){
-	 $.ajax({
-	  type: "POST",
-	  url: "classeusuario.php",
-	  data: { login: document.getElementById("input_row").value }
-	}).done(function( msg ) {
-	  alert( "Data Saved: " + msg );
-	});    
-
-		}*/
+	function alterar(){
+	  document.getElementById("opt").value="3";
+    if(document.getElementById("input_row").value==0)
+    {
+      alert("Nenhum usuário selecionado!");
+    }
+    else
+    {
+      document.alt.submit();
+    } 
+	}
 	
 		
 	function removerr(){
@@ -161,7 +162,7 @@
 		{
 			alert("Nenhum usuário selecionado!");
 		}
-		else
+		else if(confirm("Deseja excluir o usuário selecionado?"))
 		{
 			$.ajax({
 			  type: "POST",

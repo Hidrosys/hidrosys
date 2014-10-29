@@ -52,9 +52,9 @@
 				<label>Tipo</label>
 				<input class="form-control" id="tipo" placeholder="Entre com o nivel de acesso">
 			  </div>
-			  <button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
-			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
+			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
+			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
 	</div>';
 	if($_POST["opt"] == '2')
@@ -93,15 +93,62 @@
 				<label>Tipo</label>
 				'.$consulta["tipo"].'
 			  </div>
-			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
+			  
 			</form>
+			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
 	</div>';	
 	mysqli_close($conexao);
 	}
+
+	if($_POST["opt"]=="3")
+	{		
+		unset($_POST["opt"]);
+		include("classeusuario.php");
+		$_POST["opt"]="3";
+		$usuario = consultaBD($_POST["selected_row"]);
+		echo '<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Alterar Usuário</h3>
+		</div>
+		<div class="panel-body">
+			<form role="form">
+				<input type="hidden" id="opt" name=opt>
+				<input type="hidden" id="id" value="'. $_POST["selected_row"] .'">
+			  <div class="form-group">
+				<label>Login</label>
+				<input class="form-control" id="login" placeholder="Entre com o login" value="'. $usuario->getLogin() .'">
+			  </div>
+			  <div class="form-group">
+				<label>Senha</label>
+				<input type="password" class="form-control" id="senha" placeholder="Entre com a senha" value="'. $usuario->getSenha() .'">
+			  </div>
+			  <div class="form-group">
+				<label>Nome</label>
+				<input class="form-control" id="nome" placeholder="Entre com o seu nome" value="'. $usuario->getNome() .'">
+			  </div>
+			  <div class="form-group">
+				<label>Email</label>
+				<input class="form-control" id="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'">
+			  </div>
+			  <div class="form-group">
+				<label>Telefone</label>
+				<input class="form-control" id="telefone" placeholder="Entre com o seu telefone" value="'. $usuario->getTelefone() .'">
+			  </div>
+			  <div class="form-group">
+				<label>Tipo</label>
+				<input class="form-control" id="tipo" placeholder="Entre com o nivel de acesso" value="'. $usuario->getTipo() .'">
+			  </div>
+			</form>
+			<button onclick="salva()" id="id1" class="btn btn-default">Salvar</button>
+			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
+		</div>
+		</div>';
+	}
+
 	?>
 	<script type="text/javascript">
-	var op=$_POST["opt"];
+	//var op= $_POST["opt"];
 	function manda(){
 	$.ajax({
 	  type: "POST",
@@ -113,7 +160,14 @@
 	}
 	function volta()
 	{
-		$.ajax({	  
+		window.location.replace("/hidrosys/usuarios.php");
+	}
+	function salva()
+	{
+	$.ajax({
+	  type: "POST",
+	  url: "classeusuario.php",
+	  data: {opt: "3", id: document.getElementById("id").value, login: document.getElementById("login").value, senha: document.getElementById("senha").value, nome: document.getElementById("nome").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value, tipo: document.getElementById("tipo").value}
 	}).done(function() {		
 		window.location.replace("/hidrosys/usuarios.php");
 	  });

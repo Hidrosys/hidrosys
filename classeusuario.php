@@ -47,6 +47,10 @@
 			$result = mysqli_query($conexao, $query);
 			mysqli_close($conexao);
 		}
+		public function getLogin()
+		{
+			return $this->login;
+		}
 		public function getNome()
 		{
 			return $this->nome;
@@ -94,13 +98,13 @@
 		
 		
 	}
-	function consultaBD($login_entra)
+	function consultaBD($id_entra)
 	{
 		$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
-		$query = "SELECT * FROM usuarios WHERE login = '".$login_entra."'";
+		$query = "SELECT * FROM usuarios WHERE id = ".$id_entra;
 		$result = mysqli_query($conexao, $query);
 		$consulta = mysqli_fetch_array($result);
-		$insta = new Usuario($login_entra, base64_decode($consulta["senha"]), $consulta["nome"], $consulta["email"], $consulta["telefone"], $consulta["tipo"], $consulta["id"]);
+		$insta = new Usuario($consulta["login"], base64_decode($consulta["senha"]), $consulta["nome"], $consulta["email"], $consulta["telefone"], $consulta["tipo"], $consulta["id"]);
 		mysqli_close($conexao);
 		return $insta;
 	}
@@ -115,13 +119,25 @@
 	{
 		$novo = new Usuario($login, $senha, $nome, $email, $telefone, $tipo, 0);
 		$novo->bdcreate();		
-	}	
-	if($_POST["opt"]=="1")
-	{
-		criaBD($_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);		
 	}
-	if($_POST["opt"]=="4")
+	function editaBD($id, $login, $senha, $nome, $email, $telefone, $tipo)
 	{
-		deletaBD($_POST["id"]);		
+		$edita = new Usuario($login, $senha, $nome, $email, $telefone, $tipo, $id);
+		$edita->bdupdate();
+	}
+	if(isset($_POST["opt"]))
+	{
+		if($_POST["opt"]=="1")
+		{
+			criaBD($_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);		
+		}
+		if($_POST["opt"]=="3")
+		{
+			editaBD($_POST["id"], $_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
+		}
+		if($_POST["opt"]=="4")
+		{
+			deletaBD($_POST["id"]);		
+		}
 	}	
 ?>
