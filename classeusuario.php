@@ -114,7 +114,7 @@
 	function criaBD($login, $senha, $nome, $email, $telefone, $tipo)
 	{
 		$novo = new Usuario($login, $senha, $nome, $email, $telefone, $tipo, 0);
-		$novo->bdcreate();
+		$novo->bdcreate();		
 	}	
 	if($_POST["opt"]=="1")
 	{

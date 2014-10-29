@@ -17,12 +17,17 @@
     <![endif]-->
   </head>
   <body>
-	<div class="panel panel-default">
+	<form method="POST" action="altusuario.php" name="vai" id="vai">
+		<input type="hidden" name="opt" value="1">
+	</form>
+	<?php	
+	if($_POST["opt"]=="1") echo '<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Inserir Usuário</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form">
+				<input type="hidden" id="opt" name=opt>
 			  <div class="form-group">
 				<label>Login</label>
 				<input class="form-control" id="login" placeholder="Entre com o login">
@@ -47,20 +52,71 @@
 				<label>Tipo</label>
 				<input class="form-control" id="tipo" placeholder="Entre com o nivel de acesso">
 			  </div>
-			  <button onclick='manda()' id='id1' class="btn btn-default">Concluir</button>
+			  <button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
 		</div>
-	</div>
+	</div>';
+	if($_POST["opt"] == '2')
+	{	
+	$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
+	$query = "SELECT * FROM usuarios WHERE id = ".$_POST["selected_row"];
+	$result = mysqli_query($conexao, $query);
+	$consulta = mysqli_fetch_array($result);	
+	echo '<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Visualizar Usuário</h3>
+		</div>
+		<div class="panel-body">
+			<form role="form">
+			  <div class="form-group">
+				<label>ID</label>
+				'.$_POST["selected_row"].'
+			  </div>
+			  <div class="form-group">
+				<label>Login</label>
+				'.$consulta["login"].'
+			  </div>
+			  <div class="form-group">
+				<label>Nome</label>
+				'.$consulta["nome"].'
+			  </div>
+			  <div class="form-group">
+				<label>Email</label>
+				'.$consulta["email"].'
+			  </div>
+			  <div class="form-group">
+				<label>Telefone</label>
+				'.$consulta["telefone"].'
+			  </div>
+			  <div class="form-group">
+				<label>Tipo</label>
+				'.$consulta["tipo"].'
+			  </div>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
+			</form>
+		</div>
+	</div>';	
+	mysqli_close($conexao);
+	}
+	?>
 	<script type="text/javascript">
-	var op=$_POST["op"];
+	var op=$_POST["opt"];
 	function manda(){
 	$.ajax({
 	  type: "POST",
 	  url: "classeusuario.php",
 	  data: {opt: "1", login: document.getElementById("login").value, senha: document.getElementById("senha").value, nome: document.getElementById("nome").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value, tipo: document.getElementById("tipo").value}
 	}).done(function() {		
-		window.location.replace("/hidrosys/usuarios.php");
+		document.vai.submit();	
 	  });		
+	}
+	function volta()
+	{
+		$.ajax({	  
+	}).done(function() {		
+		window.location.replace("/hidrosys/usuarios.php");
+	  });
 	}
 	</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

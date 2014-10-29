@@ -38,9 +38,10 @@
       }
     </script>
 
-    <form method="POST" action="usuarios.php">
+    <form method="POST" action="altusuario.php" name="alt">
 
       <input type="hidden" id="input_row" name="selected_row" value="0">
+	  <input type="hidden" id="opt" name="opt">
       <!-- <input type="submit" value="OK"> -->
 
     </form>
@@ -129,19 +130,21 @@
     </div>
 	<script type="text/javascript">
 	function adicionar(){
-	window.location.replace("/hidrosys/altusuario.php");
-	}
-	/*function vizu(){
-	 $.ajax({
-	  type: "POST",
-	  url: "classeusuario.php",
-	  data: { login: document.getElementById("input_row").value }
-	}).done(function( msg ) {
-	  alert( "Data Saved: " + msg );
-	});    
-
+		document.getElementById("opt").value="1";
+		document.alt.submit();
+	}    
+	function vizu(){
+		document.getElementById("opt").value="2";
+		if(document.getElementById("input_row").value==0)
+		{
+			alert("Nenhum usuário selecionado!");
 		}
-	function alterar(){
+		else
+		{
+			document.alt.submit();
+		}		
+	}
+	/*function alterar(){
 	 $.ajax({
 	  type: "POST",
 	  url: "classeusuario.php",
@@ -154,15 +157,21 @@
 	
 		
 	function removerr(){
-	 $.ajax({
-	  type: "POST",
-	  url: "classeusuario.php",
-	  data: { opt:"4", id: document.getElementById("input_row").value }
-	}).done(function( msg ) {
-	  window.location.replace("/hidrosys/usuarios.php");
-	});    
-
+		if(document.getElementById("input_row").value==0)
+		{
+			alert("Nenhum usuário selecionado!");
 		}
+		else
+		{
+			$.ajax({
+			  type: "POST",
+			  url: "classeusuario.php",
+			  data: { opt:"4", id: document.getElementById("input_row").value }
+			}).done(function( msg ) {
+			  window.location.replace("/hidrosys/usuarios.php");
+			});
+		}
+	}
 	</script>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
