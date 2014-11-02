@@ -167,7 +167,7 @@
 			$.ajax({
 			  type: "POST",
 			  url: "classeusuario.php",
-			  data: { opt:"4", id: document.getElementById("input_row").value }
+			  data: { opt:"4", id: document.getElementById("input_row").value  }
 			}).done(function( msg ) {
 			  window.location.replace("/hidrosys/usuarios.php");
 			});

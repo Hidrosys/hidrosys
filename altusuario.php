@@ -20,7 +20,7 @@
 	<form method="POST" action="altusuario.php" name="vai" id="vai">
 		<input type="hidden" name="opt" value="1">
 	</form>
-	<?php	
+	<?php		
 	if($_POST["opt"]=="1") echo '<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Inserir Usuário</h3>
