@@ -38,9 +38,10 @@
       }
     </script>
 
-    <form method="POST" action="usuarios.php">
+    <form method="POST" action="altcliente.php" name="alt">
 
       <input type="hidden" id="input_row" name="selected_row" value="0">
+	  <input type="hidden" id="opt" name="opt">
       <!-- <input type="submit" value="OK"> -->
 
     </form>
@@ -63,16 +64,16 @@
           <table class="table table-striped">
             <thead>
               <tr class="info">
-                <td style="width: 9.5%">
+                <td style="width: 6.5%">
                   ID
                 </td>
-                <td style="width: 40%">
+                <td style="width: 45%">
                   Nome
                 </td>
-                <td style="width: 17%">
+                <td style="width: 15%">
                   Telefone
                 </td>
-                <td style="width: 30%">
+                <td style="width: 20%">
                   Email
                 </td>
               </tr>
@@ -91,7 +92,7 @@
                 echo
                 '<tr id="r' . $consulta["id"] . '" onclick="selectRow('.$consulta["id"].');" >
                   <td
-                  <td style="width: 10%">
+                  <td style="width: 6%">
                     '.$consulta["id"].
                   '</td>
                   <td style="width: 42%">
@@ -114,12 +115,59 @@
 
     <div class="panel panel-default col-xs-4" style="margin-left: auto; margin-right: auto; float: none; width: 921px; min-height: 50px">
       <div class="panel-body">
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-plus" style="padding-right: 10px"></span>Adicionar</button>
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-eye-open" style="padding-right: 10px"></span>Visualizar</button>
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-pencil" style="padding-right: 10px"></span>Alterar</button>
-        <button type="button" class="btn btn-primary" style="width: 150px; float: left;"><span class="glyphicon glyphicon-minus" style="padding-right: 10px"></span>Remover</button>
+        <button type="button" class="btn btn-primary" onclick='adicionar()' id='1' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-plus" style="padding-right: 10px"></span>Adicionar</button>
+        <button type="button" class="btn btn-primary" onclick='vizu()' id='2' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-eye-open" style="padding-right: 10px"></span>Visualizar</button>
+        <button type="button" class="btn btn-primary" onclick='alterar()' id='3' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-pencil" style="padding-right: 10px"></span>Alterar</button>
+        <button type="button" class="btn btn-primary" onclick='removerr()' id='Botao4' style="width: 150px; float: left;"><span class="glyphicon glyphicon-minus" style="padding-right: 10px"></span>Remover</button>
       </div>
     </div>
+	
+	<script type="text/javascript">
+	function adicionar(){
+		document.getElementById("opt").value="1";
+		document.alt.submit();
+	}    
+	function vizu(){
+		document.getElementById("opt").value="2";
+		if(document.getElementById("input_row").value==0)
+		{
+			alert("Nenhum cliente selecionado!");
+		}
+		else
+		{
+			document.alt.submit();
+		}		
+	}
+	function alterar(){
+	  document.getElementById("opt").value="3";
+    if(document.getElementById("input_row").value==0)
+    {
+      alert("Nenhum cliente selecionado!");
+    }
+    else
+    {
+      document.alt.submit();
+    } 
+	}
+	
+		
+	function removerr(){
+		if(document.getElementById("input_row").value==0)
+		{
+			alert("Nenhum cliente selecionado!");
+		}
+		else if(confirm("Deseja excluir o cliente selecionado?"))
+		{
+			$.ajax({
+			  type: "POST",
+			  url: "classecliente.php",
+			  data: { opt:"4", id: document.getElementById("input_row").value  }
+			}).done(function( msg ) {
+			  window.location.replace("/hidrosys/clientes.php");
+			});
+		}
+	}
+	</script>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
