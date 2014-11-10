@@ -1,4 +1,4 @@
-/////////// Alteração em 20/10/2014
+﻿/////////// Alteração em 20/10/2014
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `endereco` text NOT NULL,
   `cep` text NOT NULL,
   `telefone` text NOT NULL,
-  `cpf_cnpj` text NOT NULL,
+  `cpf` text NOT NULL,
   `email` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
