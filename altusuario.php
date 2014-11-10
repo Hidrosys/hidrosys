@@ -26,35 +26,35 @@
 			<h3 class="panel-title">Inserir Usuário</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form">
-				<input type="hidden" id="opt" name=opt>
+			<form role="form" id="formulario" method="post" action="classeusuario.php">
+				<input type="hidden" id="opt" name="opt" value="1"/>
 			  <div class="form-group">
-				<label>Login</label>
-				<input class="form-control" id="login" placeholder="Entre com o login">
+				<label>Login *</label>
+				<input type="text" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o login corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="login" name="login" placeholder="Entre com o login" pattern="[A-Za-z0-9]{3,30}" required/>
 			  </div>
 			  <div class="form-group">
-				<label>Senha</label>
-				<input type="password" class="form-control" id="senha" placeholder="Entre com a senha">
+				<label>Senha *</label>
+				<input type="password" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a senha\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="senha" name="senha" placeholder="Entre com a senha" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Nome</label>
-				<input class="form-control" id="nome" placeholder="Entre com o seu nome">
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o seu nome" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
-				<input class="form-control" id="email" placeholder="default@default.com">
+				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" />
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" id="telefone" placeholder="Entre com o seu telefone">
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
 			  </div>
 			  <div class="form-group">
-				<label>Tipo</label>
-				<input class="form-control" id="tipo" placeholder="Entre com o nivel de acesso">
+				<label>Tipo *</label>
+				<input class="form-control" id="tipo" name="tipo" placeholder="Entre com o nivel de acesso" required>
 			  </div>
+			  <button type="submit" id="id1" class="btn btn-default">Inserir</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
-			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
 	</div>';
 	if($_POST["opt"] == '2')
@@ -112,44 +112,46 @@
 			<h3 class="panel-title">Alterar Usuário</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form">
-				<input type="hidden" id="opt" name=opt>
-				<input type="hidden" id="id" value="'. $_POST["selected_row"] .'">
+			<form role="form" id="formulario" method="post" action="classeusuario.php">
+				<input type="hidden" id="opt" name="opt" value="3">
+				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
-				<label>Login</label>
-				<input class="form-control" id="login" placeholder="Entre com o login" value="'. $usuario->getLogin() .'">
+				<label>Login *</label>
+				<input type="text" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o login corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="login" name="login" placeholder="Entre com o login" value="'. $usuario->getLogin() .'" pattern="[A-Za-z0-9]{3,30}" required/>
 			  </div>
 			  <div class="form-group">
-				<label>Senha</label>
-				<input type="password" class="form-control" id="senha" placeholder="Entre com a senha" value="'. $usuario->getSenha() .'">
+				<label>Senha *</label>
+				<input type="password" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a senha\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="senha" name="senha" placeholder="Entre com a senha" value="'. $usuario->getSenha() .'" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Nome</label>
-				<input class="form-control" id="nome" placeholder="Entre com o seu nome" value="'. $usuario->getNome() .'">
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o seu nome" value="'. $usuario->getNome() .'" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
-				<input class="form-control" id="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'">
+				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" />
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" id="telefone" placeholder="Entre com o seu telefone" value="'. $usuario->getTelefone() .'">
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
 			  </div>
 			  <div class="form-group">
-				<label>Tipo</label>
-				<input class="form-control" id="tipo" placeholder="Entre com o nivel de acesso" value="'. $usuario->getTipo() .'">
+				<label>Tipo *</label>
+				<input class="form-control" id="tipo" name="tipo" placeholder="Entre com o nivel de acesso" value="'. $usuario->getTipo() .'" required>
 			  </div>
+			  <button type="submit" id="id1" class="btn btn-default">Salvar</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
-			<button onclick="salva()" id="id1" class="btn btn-default">Salvar</button>
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
 		</div>';
 	}
 
 	?>
+	<label>Os campos marcados com * são obrigatórios<label/>
 	<script type="text/javascript">
 	//var op= $_POST["opt"];
 	function manda(){
+
 	$.ajax({
 	  type: "POST",
 	  url: "classeusuario.php",
@@ -163,7 +165,7 @@
 		window.location.replace("/hidrosys/usuarios.php");
 	}
 	function salva()
-	{
+	{		
 	$.ajax({
 	  type: "POST",
 	  url: "classeusuario.php",

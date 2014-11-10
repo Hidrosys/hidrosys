@@ -133,18 +133,20 @@
 			criaBD($_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
 			date_default_timezone_set("America/Brasilia");			
 			$formated_date  = date("m/d/y G.i:s<br>", time());	
-			$arquivo = fopen('log.txt','a');
-			fwrite($arquivo, $formated_date . "--Insertion of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
-			fclose($arquivo);
+			//$arquivo = fopen('log.txt','a');
+			//fwrite($arquivo, $formated_date . "--Insertion of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
+			//fclose($arquivo);
+			header("Location: usuarios.php");
 		}
 		if($_POST["opt"]=="3")
 		{
 			editaBD($_POST["id"], $_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
 			criaBD($_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
 			$formated_date  = date("m/d/y G.i:s<br>", time());	
-			$arquivo = fopen('log.txt','a');
-			fwrite($arquivo, $formated_date . "--Alteration of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
-			fclose($arquivo);
+			//$arquivo = fopen('log.txt','a');
+			//fwrite($arquivo, $formated_date . "--Alteration of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
+			//fclose($arquivo);
+			header("Location: usuarios.php");
 		}
 		if($_POST["opt"]=="4")
 		{
