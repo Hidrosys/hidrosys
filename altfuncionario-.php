@@ -17,7 +17,7 @@
     <![endif]-->
   </head>
   <body>
-	<form method="POST" action="altfuncionario.php" name="vai" id="vai">
+	<form method="POST" action="altusuario.php" name="vai" id="vai">
 		<input type="hidden" name="opt" value="1">
 	</form>
 	<?php		
@@ -27,11 +27,10 @@
 		</div>
 		<div class="panel-body">
 			<form role="form">
-				<input type="hidden" id="opt" name=opt value="1">
-				<input type="hidden" id="status" name="status" value="0">
+				<input type="hidden" id="opt" name=opt>
 			  <div class="form-group">
 				<label>Nome</label>
-				<input type="form-control" class="form-control" id="nome" name="nome" placeholder="Entre com o nome">
+				<input type="text" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" id="nome" name="nome" placeholder="Entre com o nome"/>
 			  </div>
 			  <div class="form-group">
 				<label>Data de nascimento</label>
@@ -72,7 +71,8 @@
 			  <div class="form-group">
 				<label>Preco da hora trabalhada</label>
 				<input class="form-control" id="prehora" placeholder="Entre com o valor da hora">
-			  </div>			  
+			  </div>
+			  <input type="hidden" id="status" name=status value="0">
 			</form>
 			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
 			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
@@ -149,7 +149,7 @@
 	if($_POST["opt"]=="3")
 	{		
 		unset($_POST["opt"]);
-		include("classefun.php");
+		include("classfuncionario.php");
 		$_POST["opt"]="3";
 		$usuario = consultaBD($_POST["selected_row"]);
 		echo '<div class="panel panel-default">
@@ -157,7 +157,7 @@
 			<h3 class="panel-title">Alterar Usuário</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form" id="formulario" method="post" action="classefun.php">
+			<form role="form" id="formulario" method="post" action="classefuncionario.php">
 				<input type="hidden" id="opt" name="opt" value="3">
 				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
@@ -194,28 +194,39 @@
 
 	?>
 	<script type="text/javascript">
+	//var op= $_POST["opt"];
 	function manda(){
+
 	$.ajax({
 	  type: "POST",
-	  url: "classefun.php",
-	  data: {opt: "1", nome: document.getElementById("nome").value, datanasc: document.getElementById("nasce").value, rg: document.getElementById("rg").value, cpf: document.getElementById("cpf").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value, endereco: document.getElementById("endereco").value, ocupacao: document.getElementById("ocupacao").value, salario: document.getElementById("salario").value, prehora: document.getElementById("prehora").value, status: document.getElementById("status").value}
+	  url: "classeusuario.php",
+	  data: {opt: "1", login: document.getElementById("login").value, senha: document.getElementById("senha").value, nome: document.getElementById("nome").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value, tipo: document.getElementById("tipo").value}
 	}).done(function() {		
 		document.vai.submit();	
 	  });		
 	}
 	function volta()
 	{
-		window.location.replace("/hidrosys/funcionarios.php");
+		window.location.replace("/hidrosys/usuarios.php");
 	}
 	function salva()
-	{
+	{		
 	$.ajax({
 	  type: "POST",
-	  url: "classefun.php",
-	  data: {opt: "3", id: document.getElementById("id").value, nome: document.getElementById("nome").value, endereco: document.getElementById("endereco").value, cep: document.getElementById("cep").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value, cpf: document.getElementById("cpf").value}
+	  url: "classeusuario.php",
+	  data: {opt: "3", id: document.getElementById("id").value, login: document.getElementById("login").value, senha: document.getElementById("senha").value, nome: document.getElementById("nome").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value, tipo: document.getElementById("tipo").value}
 	}).done(function() {		
-		window.location.replace("/hidrosys/funcionarios.php");
+		window.location.replace("/hidrosys/usuarios.php");
 	  });
+	}
+
+
+	function valida()
+	{
+		var val;
+		val = document.getElementById("login").validity.valid;
+		val = val && document.getElementById("email").validity.valid;
+		return val;
 	}
 	</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
