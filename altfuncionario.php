@@ -18,24 +18,24 @@
   </head>
   <body>
 	<form method="POST" action="altfuncionario.php" name="vai" id="vai">
-		<input type="hidden" name="opt" value="1">
+		<input type="hidden" id="opt" name="opt" value="1">
 	</form>
 	<?php		
 	if($_POST["opt"]=="1") echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Inserir Usuário</h3>
+			<h3 class="panel-title">Inserir Funcionario</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form">
-				<input type="hidden" id="opt" name=opt value="1">
+				<input type="hidden" id="opt" name="opt">
 				<input type="hidden" id="status" name="status" value="0">
 			  <div class="form-group">
 				<label>Nome</label>
-				<input type="form-control" class="form-control" id="nome" name="nome" placeholder="Entre com o nome">
+				<input class="form-control" id="nome" name="nome" placeholder="Entre com o nome">
 			  </div>
 			  <div class="form-group">
 				<label>Data de nascimento</label>
-				<input type="form-control" class="form-control" id="nasce" placeholder="Entre com a data de nascimento">
+				<input class="form-control" id="nasce" placeholder="Entre com a data de nascimento">
 			  </div>
 			  <div class="form-group">
 				<label>RG</label>
@@ -86,7 +86,7 @@
 	$consulta = mysqli_fetch_array($result);	
 	echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Visualizar Usuário</h3>
+			<h3 class="panel-title">Visualizar Funcionario</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form">
@@ -154,36 +154,32 @@
 		$usuario = consultaBD($_POST["selected_row"]);
 		echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Alterar Usuário</h3>
+			<h3 class="panel-title">Alterar Funcionario</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form" id="formulario" method="post" action="classefun.php">
 				<input type="hidden" id="opt" name="opt" value="3">
 				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
-				<label>Login *</label>
-				<input type="text" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o login\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="login" name="login" placeholder="Entre com o login" value="'. $usuario->getLogin() .'" pattern="[A-Za-z0-9]{3,30}" required/>
+				<label>Nome *</label>
+				<input class="form-control" id="nome" name="nome" placeholder="Entre com o login" value="'. $usuario->getNome() .'">
 			  </div>
 			  <div class="form-group">
-				<label>Senha *</label>
-				<input type="password" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a senha\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="senha" name="senha" placeholder="Entre com a senha" value="'. $usuario->getSenha() .'" required/>
+				<label>Endreco *</label>
+				<input class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereco" value="'. $usuario->getEndereco() .'">
 			  </div>
 			  <div class="form-group">
-				<label>Nome</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o seu nome" value="'. $usuario->getNome() .'" pattern="[A-Za-zçÇãâáéóúÁÉÓÚ]{1,50}" required/>
+				<label>RG</label>
+				<input class="form-control"  id="rg" name="rg" placeholder="Entre com o RG" value="'. $usuario->getRG() .'">
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
-				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" />
+				<input type="email" class="form-control" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'">
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" pattern=".((10)|([1-9][1-9]).)\\s9?[6-9][0-9]{3}-[0-9]{4}" />
-			  </div>
-			  <div class="form-group">
-				<label>Tipo</label>
-				<input class="form-control" id="tipo" name="tipo" placeholder="Entre com o nivel de acesso" value="'. $usuario->getTipo() .'">
-			  </div>
+				<input class="form-control" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'">
+			  </div>			  
 			  <button type="submit" id="id1" class="btn btn-default">Salvar</button>
 			</form>
 			
@@ -212,7 +208,7 @@
 	$.ajax({
 	  type: "POST",
 	  url: "classefun.php",
-	  data: {opt: "3", id: document.getElementById("id").value, nome: document.getElementById("nome").value, endereco: document.getElementById("endereco").value, cep: document.getElementById("cep").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value, cpf: document.getElementById("cpf").value}
+	  data: {opt: "3", id: document.getElementById("id").value, nome: document.getElementById("nome").value, endereco: document.getElementById("endereco").value, rg: document.getElementById("RG").value, email: document.getElementById("email").value, telefone: document.getElementById("telefone").value}
 	}).done(function() {		
 		window.location.replace("/hidrosys/funcionarios.php");
 	  });

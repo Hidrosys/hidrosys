@@ -73,7 +73,7 @@
                 <td style="width: 15%">
                   Telefone
                 </td>
-                <td style="width: 20%">
+                <td style="width: 25%">
                   Email
                 </td>
               </tr>
@@ -131,7 +131,7 @@
 		document.getElementById("opt").value="2";
 		if(document.getElementById("input_row").value==0)
 		{
-			alert("Nenhum cliente selecionado!");
+			alert("Nenhum funcionario selecionado!");
 		}
 		else
 		{
@@ -142,7 +142,7 @@
 	  document.getElementById("opt").value="3";
     if(document.getElementById("input_row").value==0)
     {
-      alert("Nenhum cliente selecionado!");
+      alert("Nenhum funcionario selecionado!");
     }
     else
     {
@@ -154,13 +154,13 @@
 	function removerr(){
 		if(document.getElementById("input_row").value==0)
 		{
-			alert("Nenhum cliente selecionado!");
+			alert("Nenhum funcionario selecionado!");
 		}
 		else if(confirm("Deseja excluir o funcionario selecionado?"))
 		{
 			$.ajax({
 			  type: "POST",
-			  url: "classefuncionario.php",
+			  url: "classefun.php",
 			  data: { opt:"4", id: document.getElementById("input_row").value  }
 			}).done(function( msg ) {
 			  window.location.replace("/hidrosys/funcionarios.php");
