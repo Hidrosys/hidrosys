@@ -37,25 +37,26 @@
 				<input type="password" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a senha\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="senha" name="senha" placeholder="Entre com a senha" required/>
 			  </div>
 			  <div class="form-group">
-				<label>Nome</label>
+				<label>Nome *</label>
 				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o seu nome" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
-				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" />
+				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente no formato exemplo@servidor.com\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" />
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
 			  </div>
 			  <div class="form-group">
 				<label>Tipo *</label>
-				<input class="form-control" id="tipo" name="tipo" placeholder="Entre com o nivel de acesso" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha este campo com o nível de acesso do usuário de 1-10\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="tipo" name="tipo" placeholder="Entre com o nivel de acesso" required>
 			  </div>
 			  <button type="submit" id="id1" class="btn btn-default">Inserir</button>
 			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 	</div>';
 	if($_POST["opt"] == '2')
 	{	
@@ -124,30 +125,30 @@
 				<input type="password" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a senha\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="senha" name="senha" placeholder="Entre com a senha" value="'. $usuario->getSenha() .'" required/>
 			  </div>
 			  <div class="form-group">
-				<label>Nome</label>
+				<label>Nome *</label>
 				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o seu nome" value="'. $usuario->getNome() .'" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
-				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" />
+				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente no formato exemplo@servidor.com\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" />
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
 			  </div>
 			  <div class="form-group">
 				<label>Tipo *</label>
-				<input class="form-control" id="tipo" name="tipo" placeholder="Entre com o nivel de acesso" value="'. $usuario->getTipo() .'" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha este campo com o nível de acesso do usuário de 1-10\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="tipo" name="tipo" placeholder="Entre com o nível de acesso" value="'. $usuario->getTipo() .'" required>
 			  </div>
 			  <button type="submit" id="id1" class="btn btn-default">Salvar</button>
 			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 		</div>';
 	}
 
 	?>
-	<label>Os campos marcados com * são obrigatórios<label/>
 	<script type="text/javascript">
 	//var op= $_POST["opt"];
 	function manda(){

@@ -34,7 +34,7 @@ function validaLogin($login, $senha)
 	}
 
 	mysqli_free_result($result);
-	mysqli_close($conecta);
+	mysqli_close($conexao);
 }
 
 function iniciaSessao($login, $senha)
@@ -45,7 +45,7 @@ function iniciaSessao($login, $senha)
 
 function encerraSessao()
 {
-	header("Location: login.php");
+	header("Location: login.php?sessaoEncerrada=true");
 	session_destroy();
 }
 

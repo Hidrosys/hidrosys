@@ -91,19 +91,21 @@
             <?php
               $conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");              
 
-              $query = "SELECT * FROM usuarios";
+              $query = "SELECT * FROM usuarios WHERE deleted = 0 ";
 
               if(isset($_GET["tipo"]))
               {
                 if($_GET["tipo"] == "id" && isset($_GET["busca"]))
                 {
-                  $query = $query . " WHERE id LIKE ". $_GET["busca"];
+                  $query = $query . " AND id LIKE ". $_GET["busca"];
                 }
                 else
                 {
-                  $query = $query . " WHERE " . $_GET["tipo"] . " LIKE '". $_GET["busca"] ."%'";
+                  $query = $query . " AND " . $_GET["tipo"] . " LIKE '". $_GET["busca"] ."%'";
                 }
               }
+
+              $query = $query . " ORDER BY nome";
 
               $result = mysqli_query($conexao, $query);
               

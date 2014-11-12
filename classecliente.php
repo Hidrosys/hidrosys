@@ -1,6 +1,6 @@
 <?php
 	include("seguranca.php");
-	class Usuario
+	class Cliente
 	{
 		private $nome;
 		private $cep;
@@ -25,7 +25,7 @@
 		{
 			$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
 						
-			$query = "UPDATE clientes SET nome = '" . $this->nome . "', cep = '" . $this->cep . "', endereco = '" . $this->endereco . "', email = '" . $this->email . "', telefone = '". $this->telefone . "', cpf = " . $this->cpf . " WHERE id = " . $this->id;
+			$query = "UPDATE clientes SET nome = '" . $this->nome . "', cep = '" . $this->cep . "', endereco = '" . $this->endereco . "', email = '" . $this->email . "', telefone = '". $this->telefone . "', cpf = '" . $this->cpf . "' WHERE id = " . $this->id;
 			$result = mysqli_query($conexao, $query);
 			mysqli_close($conexao);
 		}
@@ -33,7 +33,7 @@
 		{
 			$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
 						
-			$query = "INSERT INTO clientes (nome, cep, endereco, email, telefone, cpf) VALUES('".$this->nome . "','" . $this->cep . "','" . $this->endereco . "','" . $this->email . "','". $this->telefone . "'," . $this->cpf . ")";
+			$query = "INSERT INTO clientes (nome, cep, endereco, email, telefone, cpf) VALUES ('".$this->nome . "','" . $this->cep . "','" . $this->endereco . "','" . $this->email . "','". $this->telefone . "','" . $this->cpf . "')";
 			$result = mysqli_query($conexao, $query);
 			mysqli_close($conexao);
 		}
@@ -93,7 +93,7 @@
 		$query = "SELECT * FROM clientes WHERE id = ".$id_entra;
 		$result = mysqli_query($conexao, $query);
 		$consulta = mysqli_fetch_array($result);
-		$insta = new Usuario($consulta["nome"], $consulta["cep"], $consulta["endereco"], $consulta["email"], $consulta["telefone"], $consulta["cpf"], $consulta["id"]);
+		$insta = new Cliente($consulta["nome"], $consulta["cep"], $consulta["endereco"], $consulta["email"], $consulta["telefone"], $consulta["cpf"], $consulta["id"]);
 		mysqli_close($conexao);
 		return $insta;
 	}
@@ -106,12 +106,12 @@
 	}	
 	function criaBD($nome, $cep, $endereco, $email, $telefone, $cpf)
 	{
-		$novo = new Usuario($nome, $cep, $endereco, $email, $telefone, $cpf, 0);
+		$novo = new Cliente($nome, $cep, $endereco, $email, $telefone, $cpf, 0);
 		$novo->bdcreate();		
 	}
 	function editaBD($id, $nome, $cep, $endereco, $email, $telefone, $cpf)
 	{
-		$edita = new Usuario($nome, $cep, $endereco, $email, $telefone, $cpf, $id);
+		$edita = new Cliente($nome, $cep, $endereco, $email, $telefone, $cpf, $id);
 		$edita->bdupdate();
 	}
 	if(isset($_POST["opt"]))
@@ -128,7 +128,6 @@
 		if($_POST["opt"]=="3")
 		{
 			editaBD($_POST["id"], $_POST["nome"], $_POST["cep"], $_POST["endereco"], $_POST["email"], $_POST["telefone"], $_POST["cpf"]);
-			//criaBD($_POST["nome"], $_POST["cep"], $_POST["endereco"], $_POST["email"], $_POST["telefone"], $_POST["cpf"]);
 			$formated_date  = date("m/d/y G.i:s<br>", time());	
 			$arquivo = fopen('clientelog.txt','a');
 			fwrite($arquivo, $formated_date . "--Alteration of " . $_POST["nome"] . " by " . getLogin() . "!\r\n");

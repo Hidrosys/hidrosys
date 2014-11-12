@@ -50,7 +50,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>CPF</label>
-				<input class="form-control" id="cpf" placeholder="Entre com o CPF/CNPJ">
+				<input class="form-control" id="cpf" placeholder="Entre com o CPF">
 			  </div>
 			</form>
 			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
@@ -137,7 +137,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>CPF</label>
-				<input class="form-control" id="cpf" placeholder="Entre com o CPF/CNPJ" value="'. $usuario->getCPF() .'">
+				<input class="form-control" id="cpf" placeholder="Entre com o CPF" value="'. $usuario->getCPF() .'">
 			  </div>
 			</form>
 			<button onclick="salva()" id="id1" class="btn btn-default">Salvar</button>

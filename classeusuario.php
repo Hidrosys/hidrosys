@@ -112,7 +112,7 @@
 	function deletaBD($id)
 	{
 		$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
-		$query = "DELETE FROM usuarios WHERE id = ". $id;
+		$query = "UPDATE usuarios SET deleted = 1, deleted_date = SYSDATE() WHERE id = " . $id;
 		$result = mysqli_query($conexao, $query);
 		mysqli_close($conexao);		
 	}	
@@ -133,19 +133,18 @@
 			criaBD($_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
 			date_default_timezone_set("America/Brasilia");			
 			$formated_date  = date("m/d/y G.i:s<br>", time());	
-			//$arquivo = fopen('log.txt','a');
-			//fwrite($arquivo, $formated_date . "--Insertion of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
-			//fclose($arquivo);
+			$arquivo = fopen('logusuario.txt','a');
+			fwrite($arquivo, $formated_date . "--Insertion of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
+			fclose($arquivo);
 			header("Location: usuarios.php");
 		}
 		if($_POST["opt"]=="3")
 		{
 			editaBD($_POST["id"], $_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
-			criaBD($_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
 			$formated_date  = date("m/d/y G.i:s<br>", time());	
-			//$arquivo = fopen('log.txt','a');
-			//fwrite($arquivo, $formated_date . "--Alteration of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
-			//fclose($arquivo);
+			$arquivo = fopen('logusuario.txt','a');
+			fwrite($arquivo, $formated_date . "--Alteration of " . $_POST["login"] . " by " . getLogin() . "!\r\n");
+			fclose($arquivo);
 			header("Location: usuarios.php");
 		}
 		if($_POST["opt"]=="4")
@@ -155,7 +154,7 @@
 			$result = mysqli_query($conexao, $query);
 			$consulta = mysqli_fetch_array($result);
 			$formated_date  = date("m/d/y G.i:s<br>", time());	
-			$arquivo = fopen('log.txt','a');
+			$arquivo = fopen('logusuario.txt','a');
 			fwrite($arquivo, $formated_date . "--Deletion of " . $consulta["login"] . " by " . getLogin() . "!\r\n");
 			fclose($arquivo);
 			mysqli_close($conexao);		

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `email` text NOT NULL,
   `telefone` text NOT NULL,
   `tipo` int(11) NOT NULL,
-  `deleted` int(11) DEFAULT NULL,
+  `deleted` int(11) DEFAULT '0',
   `deleted_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `telefone` text NOT NULL,
   `cpf` text NOT NULL,
   `email` text NOT NULL,
-  `deleted` int(11) DEFAULT NULL,
+  `deleted` int(11) DEFAULT '0',
   `deleted_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
   `status` int(11) NOT NULL,
   `telefone` text NOT NULL,
   `nome` text NOT NULL,
-  `deleted` int(11) DEFAULT NULL,
+  `deleted` int(11) DEFAULT '0',
   `deleted_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
