@@ -34,7 +34,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Endereço *</label>
-				<input type="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o endereço\')" onchange="try{setCustomValidity(\'\')}catch(e){}" class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereço" pattern="[A-Za-z0-9 çÇãâáéóúÁÉÓÚ,.]{1,50}" required>
+				<input type="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o endereço\')" onchange="try{setCustomValidity(\'\')}catch(e){}" class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereço" pattern="[A-Za-z0-9 çÇãâáéóúÁÉÓÚ,.\-\[\]]{1,50}" required>
 			  </div>
 			  <div class="form-group">
 				<label>CEP *</label>
@@ -122,7 +122,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Endereço *</label>
-				<input type="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o endereço\')" onchange="try{setCustomValidity(\'\')}catch(e){}" class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereço" pattern="[A-Za-z0-9 çÇãâáéóúÁÉÓÚ,.]{1,50}" required value="'. $usuario->getEndereco() .'">
+				<input type="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o endereço\')" onchange="try{setCustomValidity(\'\')}catch(e){}" class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereço" pattern="[A-Za-z0-9 çÇãâáéóúÁÉÓÚ,.\-\[\]]{1,50}" required value="'. $usuario->getEndereco() .'">
 			  </div>
 			  <div class="form-group">
 				<label>CEP *</label>
