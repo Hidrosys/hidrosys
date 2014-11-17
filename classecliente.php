@@ -100,7 +100,7 @@
 	function deletaBD($id)
 	{
 		$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
-		$query = "DELETE FROM clientes WHERE id = ". $id;
+		$query = "UPDATE clientes SET deleted = 1, deleted_date = SYSDATE() WHERE id = " . $id;
 		$result = mysqli_query($conexao, $query);
 		mysqli_close($conexao);		
 	}	
@@ -124,6 +124,7 @@
 			$arquivo = fopen('clientelog.txt','a');
 			fwrite($arquivo, $formated_date . "--Insertion of " . $_POST["nome"] . " by " . getLogin() . "!\r\n");
 			fclose($arquivo);
+			header("Location: clientes.php");
 		}
 		if($_POST["opt"]=="3")
 		{
@@ -132,6 +133,7 @@
 			$arquivo = fopen('clientelog.txt','a');
 			fwrite($arquivo, $formated_date . "--Alteration of " . $_POST["nome"] . " by " . getLogin() . "!\r\n");
 			fclose($arquivo);
+			header("Location: clientes.php");
 		}
 		if($_POST["opt"]=="4")
 		{

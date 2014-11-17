@@ -38,7 +38,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Nome *</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o seu nome" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o nome" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
@@ -46,7 +46,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" pattern=".((10)|([0-9][0-9]).)\\?s9?[0-9][0-9]{3}-[0-9]{4}" />
 			  </div>
 			  <div class="form-group">
 				<label>Tipo *</label>
@@ -126,7 +126,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Nome *</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o seu nome" value="'. $usuario->getNome() .'" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o nome" value="'. $usuario->getNome() .'" pattern="[A-Za-z çÇãâáéóúÁÉÓÚ]{1,50}" required/>
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
@@ -134,7 +134,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" pattern=".((10)|([0-9][0-9]).)\\s9?[0-9][0-9]{3}-[0-9]{4}" />
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" pattern=".((10)|([0-9][0-9]).)\\?s9?[0-9][0-9]{3}-[0-9]{4}" />
 			  </div>
 			  <div class="form-group">
 				<label>Tipo *</label>

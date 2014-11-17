@@ -18,7 +18,7 @@ function validaLogin($login, $senha)
 {
 	$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
 	
-	$query = "SELECT * FROM usuarios WHERE login = '".$login."'";
+	$query = "SELECT * FROM usuarios WHERE login = '".$login."' AND deleted = 0";
 	$result = mysqli_query($conexao, $query);
 	$consulta = mysqli_fetch_array($result);
 

@@ -85,7 +85,7 @@
           <body>
             <?php
               $conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
-              $query = "SELECT * FROM clientes";
+              $query = "SELECT * FROM clientes WHERE deleted = 0 ";
               $result = mysqli_query($conexao, $query);
               while($consulta = mysqli_fetch_array($result))
               {

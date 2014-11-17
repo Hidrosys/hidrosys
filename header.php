@@ -32,6 +32,7 @@
             <ul class="nav nav-pills">
               <?php 
               $from = basename($_SERVER['REQUEST_URI'], ".php");
+              $from = strtok($from, '.');
               echo
               '<li '. 
                 ($from=="index"? 'class="active"><a href="#">Principal</a></li>': '><a href="index.php">Principal</a></li>').
