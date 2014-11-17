@@ -58,3 +58,18 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 ----------------------------------------------------------
+
+-- Alteração em 16/11/2014
+
+CREATE TABLE IF NOT EXISTS `ferramentas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` text NOT NULL,
+  `tipo` text NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `fabricante` text NOT NULL,
+  `deleted` int(11) NOT NULL DEFAULT '0',
+  `deleted_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+----------------------------------------------------------

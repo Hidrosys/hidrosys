@@ -43,7 +43,7 @@
               '<li '. 
                 ($from=="funcionarios"? 'class="active"><a href="#">Funcionários</a></li>': '><a href="funcionarios.php">Funcionários</a></li>').
               '<li '. 
-                ($from=="ferramentas"? 'class="active"><a href="#">Ferramentas</a></li>': '><a href="#">Ferramentas</a></li>').
+                ($from=="ferramentas"? 'class="active"><a href="#">Ferramentas</a></li>': '><a href="ferramentas.php">Ferramentas</a></li>').
               '<li '.
                 ($from=="pecas"? 'class="active"><a href="#">Peças</a></li>': '><a href="#">Peças</a></li>').
               '<li '.

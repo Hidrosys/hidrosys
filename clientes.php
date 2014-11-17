@@ -47,15 +47,16 @@
     </form>
 
     <div class="col-xs-4" style="margin: 0 auto auto; float: none; width: 950px; height: 20px;">
-      <input type="login" class="form-control" id="inputSearch" placeholder="Pesquisa" style="float: left; width: 80%">
-      <select class="form-control" style="width: 14%; float: left; margin-left: 8px">
-        <option>Nome</option>
-        <option>CPF/CNPJ</option>
-        <option>ID</option>
-        <option>Email</option>
-        <option>Telefone</option>
-      </select>
-      <button type="button" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-search"></span></button>
+      <form method="get" action="clientes.php">
+        <input type="text" class="form-control" name="busca" id="inputSearch" placeholder="Pesquisa" style="float: left; width: 80%" <?php if(isset($_GET["busca"])) echo "value='".$_GET["busca"]."'"; ?> >
+        <select class="form-control" name="tipo" style="width: 14%; float: left; margin-left: 8px">
+          <option value="nome" <?php if(isset($_GET["tipo"]) && $_GET["tipo"] == "nome") echo "selected"; ?> >Nome</option>
+          <option value="id" <?php if(isset($_GET["tipo"]) && $_GET["tipo"] == "id") echo "selected"; ?> >ID</option>
+          <option value="telefone" <?php if(isset($_GET["tipo"]) && $_GET["tipo"] == "telefone") echo "selected"; ?> >Telefone</option>
+          <option value="email" <?php if(isset($_GET["tipo"]) && $_GET["tipo"] == "email") echo "selected"; ?> >Email</option>
+        </select>
+        <button type="submit" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
     </div>
 
     <div class="col-xs-4" style="min-height: 410px; max-height: 410px; margin: 2% auto auto; float: none; width: 950px;">
@@ -86,7 +87,24 @@
             <?php
               $conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
               $query = "SELECT * FROM clientes WHERE deleted = 0 ";
+
+              if(isset($_GET["tipo"]))
+              {
+                if($_GET["tipo"] == "id" && isset($_GET["busca"]))
+                {
+                  $query = $query . " AND id LIKE ". $_GET["busca"];
+                }
+                else
+                {
+                  $query = $query . " AND " . $_GET["tipo"] . " LIKE '". $_GET["busca"] ."%'";
+                }
+              }
+
+              $query = $query . " ORDER BY nome";
+
               $result = mysqli_query($conexao, $query);
+
+              if($result)
               while($consulta = mysqli_fetch_array($result))
               {
                 echo
