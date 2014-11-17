@@ -26,28 +26,29 @@
 			<h3 class="panel-title">Inserir Ferramentas</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form">
-				<input type="hidden" id="opt" name=opt>
+			<form role="form" method="post" action="classeferramenta.php">
+				<input type="hidden" id="opt" name="opt" value="1">
 			  <div class="form-group">
-				<label>Tipo</label>
-				<input class="form-control" id="tipo" placeholder="Entre com o tipo">
+				<label>Tipo *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o tipo de ferramenta\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="tipo" name="tipo" placeholder="Entre com o tipo" required>
 			  </div>
 			  <div class="form-group">
-				<label>Descricao</label>
-				<input type="form-control" class="form-control" id="descricao" placeholder="Entre com uma descricao">
+				<label>Descrição *</label>
+				<input type="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a descrição da ferramenta\')" onchange="try{setCustomValidity(\'\')}catch(e){}" class="form-control" id="descricao" name="descricao" placeholder="Entre com uma descrição" required>
 			  </div>
 			  <div class="form-group">
-				<label>Quantidade</label>
-				<input class="form-control" id="qtd" placeholder="Entre com a quantidade inicial">
+				<label>Quantidade *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a quantidade com um valor inteiro\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="qtd" name="qtd" placeholder="Entre com a quantidade inicial" pattern="[0-9]{1,8}" required>
 			  </div>
 			  <div class="form-group">
-				<label>Fabricante</label>
-				<input class="form-control" id="fabricante" placeholder="Entre com o fabricante">
+				<label>Fabricante *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o fabricante\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="fabricante" name="fabricante" placeholder="Entre com o fabricante" required>
 			  </div>			  
+			  <button type="submit" id="id1" class="btn btn-default">Inserir</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
-			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 	</div>';
 	if($_POST["opt"] == '2')
 	{	
@@ -100,17 +101,18 @@
 			<h3 class="panel-title">Alterar Ferramenta</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form">
-				<input type="hidden" id="opt" name=opt>
-				<input type="hidden" id="id" value="'. $_POST["selected_row"] .'">
+			<form role="form" method="post" action="classeferramenta.php">
+				<input type="hidden" id="opt" name="opt" value="3">
+				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
-				<label>Quantidade</label>
-				<input class="form-control" id="qtd" placeholder="Entre com a quantiidade" value="'. $usuario->getQuantidade() .'">
+				<label>Quantidade *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a quantidade com um valor inteiro\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="qtd" name="qtd" placeholder="Entre com a quantidade" value="'. $usuario->getQuantidade() .'" pattern="[0-9]{1,8}" required>
 			  </div>			  
+			  <button type="submit" id="id1" class="btn btn-default">Salvar</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
-			<button onclick="salva()" id="id1" class="btn btn-default">Salvar</button>
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 		</div>';
 	}
 

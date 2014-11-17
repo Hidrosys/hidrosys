@@ -85,8 +85,25 @@
           <body>
             <?php
               $conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
-              $query = "SELECT * FROM pecas";
+              $query = "SELECT * FROM pecas WHERE deleted = 0 ";
+
+              if(isset($_GET["tipo"]))
+              {
+                if($_GET["tipo"] == "id" && isset($_GET["busca"]))
+                {
+                  $query = $query . " AND id LIKE ". $_GET["busca"];
+                }
+                else
+                {
+                  $query = $query . " AND " . $_GET["tipo"] . " LIKE '". $_GET["busca"] ."%'";
+                }
+              }
+
+              $query = $query . " ORDER BY tipo";
+
               $result = mysqli_query($conexao, $query);
+
+              if($result)
               while($consulta = mysqli_fetch_array($result))
               {
                 echo

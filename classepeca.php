@@ -59,7 +59,7 @@
 		}
 		public function modQuantidade($quantidade)
 		{
-			$this->quantidade = $quantidade;
+			$this->qtd = $qtd;
 		}
 	public function modPrecoun($precoun)
 		{

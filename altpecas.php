@@ -17,39 +17,39 @@
     <![endif]-->
   </head>
   <body>
-	<form method="POST" action="altpecas.php" name="vai" id="vai">
+	<form method="post" action="altpecas.php" name="vai" id="vai">
 		<input type="hidden" name="opt" value="1">
 	</form>
 	<?php		
 	if($_POST["opt"]=="1") echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Inserir Ferramentas</h3>
+			<h3 class="panel-title">Inserir Peças</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form">
-				<input type="hidden" id="opt" name=opt>
+			<form role="form" name="cadastro" method="post" action="classepeca.php">
+				<input type="hidden" id="opt" name="opt" value="1">
 			  <div class="form-group">
 				<label>Tipo</label>
-				<input class="form-control" id="tipo" placeholder="Entre com o tipo">
+				<input class="form-control" id="tipo" name="tipo" placeholder="Entre com o tipo">
 			  </div>
 			  <div class="form-group">
-				<label>Descricao</label>
-				<input type="form-control" class="form-control" id="descricao" placeholder="Entre com uma descricao">
+				<label>Descrição</label>
+				<input class="form-control" id="descricao" name="descricao" placeholder="Entre com uma descrição">
 			  </div>
 			  <div class="form-group">
 				<label>Quantidade</label>
-				<input class="form-control" id="qtd" placeholder="Entre com a quantidade inicial">
+				<input class="form-control" id="qtd" name="qtd" placeholder="Entre com a quantidade inicial">
 			  </div>
 			  <div class="form-group">
 				<label>Fabricante</label>
-				<input class="form-control" id="fabricante" placeholder="Entre com o fabricante">
+				<input class="form-control" id="fabricante" name="fabricante" placeholder="Entre com o fabricante">
 			  </div>
 			  <div class="form-group">
-				<label>Preco Unitário</label>
-				<input class="form-control" id="precoun" placeholder="Entre com o preco unitario">
+				<label>Preço Unitário</label>
+				<input class="form-control" id="precoun" name="precoun" placeholder="Entre com o preco unitario">
 			  </div>			  
 			</form>
-			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
+			<button onclick="envia()" id="id1" class="btn btn-default">Inserir</button>
 			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
 	</div>';
@@ -108,19 +108,19 @@
 			<h3 class="panel-title">Alterar Ferramenta</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form">
-				<input type="hidden" id="opt" name=opt>
-				<input type="hidden" id="id" value="'. $_POST["selected_row"] .'">
+			<form role="form" name="cadastro" method="post" action="classepeca.php">
+				<input type="hidden" id="opt" name="opt" value="3">
+				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
-				<label>Quantidade</label>
-				<input class="form-control" id="qtd" placeholder="Entre com a quantiidade" value="'. $usuario->getQuantidade() .'">
+				<label>Quantidade *</label>
+				<input class="form-control" id="qtd" name="qtd" placeholder="Entre com a quantidade" value="'. $usuario->getQuantidade() .'" required>
 			  </div>
 			  <div class="form-group">
-				<label>Preco Unitário</label>
-				<input class="form-control" id="precoun" placeholder="Entre com o preco unitario" value="'. $usuario->getPrecoun() .'">
+				<label>Preco Unitário *</label>
+				<input class="form-control" id="precoun" name="precoun" placeholder="Entre com o preco unitario" value="'. str_replace(".", ",", $usuario->getPrecoun()) .'" required>
 			  </div>
 			</form>
-			<button onclick="salva()" id="id1" class="btn btn-default">Salvar</button>
+			<button onclick="envia()" id="id1" class="btn btn-default">Salvar</button>
 			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
 		</div>';
@@ -151,6 +151,12 @@
 	}).done(function() {		
 		window.location.replace("/hidrosys/pecas.php");
 	  });
+	}
+
+	function envia()
+	{
+		document.getElementById("precoun").value = document.getElementById("precoun").value.replace(',', '.');
+		document.cadastro.submit();
 	}
 	</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
