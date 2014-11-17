@@ -46,7 +46,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Telefone *</label>
-				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" pattern=".((10)|([0-9][0-9]).)\\?s9?[0-9][0-9]{3}-[0-9]{4}" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" pattern=".((10)|([0-9][0-9]).)\\s?9?[0-9][0-9]{3}-[0-9]{4}" required>
 			  </div>
 			  <div class="form-group">
 				<label>CPF *</label>
