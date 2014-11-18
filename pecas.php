@@ -47,15 +47,15 @@
     </form>
 
     <div class="col-xs-4" style="margin: 0 auto auto; float: none; width: 950px; height: 20px;">
-      <input type="login" class="form-control" id="inputSearch" placeholder="Pesquisa" style="float: left; width: 80%">
-      <select class="form-control" style="width: 14%; float: left; margin-left: 8px">
-        <option>Nome</option>
-        <option>CPF/CNPJ</option>
-        <option>ID</option>
-        <option>Email</option>
-        <option>Telefone</option>
-      </select>
-      <button type="button" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-search"></span></button>
+      <form method="get" action="ferramentas.php">
+        <input type="text" class="form-control" name="busca" id="inputSearch" placeholder="Pesquisa" style="float: left; width: 80%" <?php if(isset($_GET["busca"])) echo "value='".$_GET["busca"]."'"; ?> >
+        <select class="form-control" name="tipo" style="width: 14%; float: left; margin-left: 8px">
+          <option value="tipo" <?php if(isset($_GET["tipo"]) && $_GET["tipo"] == "tipo") echo "selected"; ?> >Tipo</option>
+          <option value="id" <?php if(isset($_GET["tipo"]) && $_GET["tipo"] == "id") echo "selected"; ?> >ID</option>
+          <option value="fabricante" <?php if(isset($_GET["tipo"]) && $_GET["tipo"] == "fabricante") echo "selected"; ?> >Fabricante</option>
+        </select>
+        <button type="submit" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
     </div>
 
     <div class="col-xs-4" style="min-height: 410px; max-height: 410px; margin: 2% auto auto; float: none; width: 950px;">
@@ -148,7 +148,7 @@
 		document.getElementById("opt").value="2";
 		if(document.getElementById("input_row").value==0)
 		{
-			alert("Nenhum cliente selecionado!");
+			alert("Nenhuma peça selecionada!");
 		}
 		else
 		{
@@ -159,7 +159,7 @@
 	  document.getElementById("opt").value="3";
     if(document.getElementById("input_row").value==0)
     {
-      alert("Nenhum cliente selecionado!");
+      alert("Nenhuma peça selecionada!");
     }
     else
     {
@@ -171,9 +171,9 @@
 	function removerr(){
 		if(document.getElementById("input_row").value==0)
 		{
-			alert("Nenhum cliente selecionado!");
+			alert("Nenhuma peça selecionada!");
 		}
-		else if(confirm("Deseja excluir o cliente selecionado?"))
+		else if(confirm("Deseja excluir a peça selecionada?"))
 		{
 			$.ajax({
 			  type: "POST",

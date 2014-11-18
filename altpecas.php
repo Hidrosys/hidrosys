@@ -23,35 +23,36 @@
 	<?php		
 	if($_POST["opt"]=="1") echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Inserir Peças</h3>
+			<h3 class="panel-title">Inserir Peça</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form" name="cadastro" method="post" action="classepeca.php">
 				<input type="hidden" id="opt" name="opt" value="1">
 			  <div class="form-group">
-				<label>Tipo</label>
-				<input class="form-control" id="tipo" name="tipo" placeholder="Entre com o tipo">
+				<label>Tipo *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o tipo da peça\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="tipo" name="tipo" placeholder="Entre com o tipo" required>
 			  </div>
 			  <div class="form-group">
-				<label>Descrição</label>
-				<input class="form-control" id="descricao" name="descricao" placeholder="Entre com uma descrição">
+				<label>Descrição *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a descrição da peça\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="descricao" name="descricao" placeholder="Entre com uma descrição" required>
 			  </div>
 			  <div class="form-group">
-				<label>Quantidade</label>
-				<input class="form-control" id="qtd" name="qtd" placeholder="Entre com a quantidade inicial">
+				<label>Quantidade *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a quantidade corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="qtd" name="qtd" placeholder="Entre com a quantidade inicial" pattern="[0-9]{1,8}" required>
 			  </div>
 			  <div class="form-group">
-				<label>Fabricante</label>
-				<input class="form-control" id="fabricante" name="fabricante" placeholder="Entre com o fabricante">
+				<label>Fabricante *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o fabricante\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="fabricante" name="fabricante" placeholder="Entre com o fabricante" required>
 			  </div>
 			  <div class="form-group">
-				<label>Preço Unitário</label>
-				<input class="form-control" id="precoun" name="precoun" placeholder="Entre com o preco unitario">
+				<label>Preço Unitário *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o preço unitário corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="precoun" name="precoun" placeholder="Entre com o preço unitário" pattern="[0-9]{1,8},?[0-9]{0,4}" required>
 			  </div>			  
+			  <button type="submit" id="id1" class="btn btn-default">Inserir</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
-			<button onclick="envia()" id="id1" class="btn btn-default">Inserir</button>
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 	</div>';
 	if($_POST["opt"] == '2')
 	{	
@@ -61,7 +62,7 @@
 	$consulta = mysqli_fetch_array($result);	
 	echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Visualizar Cliente</h3>
+			<h3 class="panel-title">Visualizar Peça</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form">
@@ -87,7 +88,7 @@
 			  </div>
 			  <div class="form-group">
 				<label>Preco Unitário</label>
-				'.$consulta["precoun"].'
+				'.str_replace(".", ",", $consulta["precoun"]).'
 			  </div>
 			  			  
 			</form>
@@ -105,7 +106,7 @@
 		$usuario = consultaBD($_POST["selected_row"]);
 		echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Alterar Ferramenta</h3>
+			<h3 class="panel-title">Alterar Peça</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form" name="cadastro" method="post" action="classepeca.php">
@@ -113,16 +114,17 @@
 				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
 				<label>Quantidade *</label>
-				<input class="form-control" id="qtd" name="qtd" placeholder="Entre com a quantidade" value="'. $usuario->getQuantidade() .'" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a quantidade corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="qtd" name="qtd" placeholder="Entre com a quantidade" value="'. $usuario->getQuantidade() .'" pattern="[0-9]{1,8}" required>
 			  </div>
 			  <div class="form-group">
 				<label>Preco Unitário *</label>
-				<input class="form-control" id="precoun" name="precoun" placeholder="Entre com o preco unitario" value="'. str_replace(".", ",", $usuario->getPrecoun()) .'" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o preço unitário corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="precoun" name="precoun" placeholder="Entre com o preço unitário" value="'. str_replace(".", ",", $usuario->getPrecoun()) .'" pattern="[0-9]{1,8}[\,]?[0-9]{0,4}?" required>
 			  </div>
-			</form>
-			<button onclick="envia()" id="id1" class="btn btn-default">Salvar</button>
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
+			  <button type="submit" id="id1" class="btn btn-default">Salvar</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
+			</form>			
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 		</div>';
 	}
 
@@ -151,12 +153,6 @@
 	}).done(function() {		
 		window.location.replace("/hidrosys/pecas.php");
 	  });
-	}
-
-	function envia()
-	{
-		document.getElementById("precoun").value = document.getElementById("precoun").value.replace(',', '.');
-		document.cadastro.submit();
 	}
 	</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -148,7 +148,7 @@
 		document.getElementById("opt").value="2";
 		if(document.getElementById("input_row").value==0)
 		{
-			alert("Nenhum cliente selecionado!");
+			alert("Nenhuma ferramenta selecionada!");
 		}
 		else
 		{
@@ -159,7 +159,7 @@
 	  document.getElementById("opt").value="3";
     if(document.getElementById("input_row").value==0)
     {
-      alert("Nenhum cliente selecionado!");
+      alert("Nenhuma ferramenta selecionada!");
     }
     else
     {
@@ -171,9 +171,9 @@
 	function removerr(){
 		if(document.getElementById("input_row").value==0)
 		{
-			alert("Nenhum cliente selecionado!");
+			alert("Nenhuma ferramenta selecionada!");
 		}
-		else if(confirm("Deseja excluir o cliente selecionado?"))
+		else if(confirm("Deseja excluir a ferramenta selecionada?"))
 		{
 			$.ajax({
 			  type: "POST",

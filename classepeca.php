@@ -97,7 +97,7 @@
 	{
 		if($_POST["opt"]=="1")
 		{
-			criaBD($_POST["tipo"], $_POST["descricao"], $_POST["qtd"], $_POST["fabricante"], $_POST["precoun"]);
+			criaBD($_POST["tipo"], $_POST["descricao"], $_POST["qtd"], $_POST["fabricante"], str_replace(",", ".", $_POST["precoun"]));
 			date_default_timezone_set("America/Brasilia");			
 			$formated_date  = date("m/d/y G.i:s<br>", time());	
 			$arquivo = fopen('logpecas.txt','a');
@@ -111,7 +111,7 @@
 			$query = "SELECT * FROM pecas WHERE id = ". $_POST["id"];
 			$result = mysqli_query($conexao, $query);
 			$consulta = mysqli_fetch_array($result);			
-			editaBD($consulta["tipo"], $consulta["descricao"], $_POST["qtd"], $consulta["fabricante"], $_POST["precoun"], $consulta["id"]);			
+			editaBD($consulta["tipo"], $consulta["descricao"], $_POST["qtd"], $consulta["fabricante"], str_replace(",", ".", $_POST["precoun"]), $consulta["id"]);			
 			//criaBD($_POST["login"], $_POST["senha"], $_POST["nome"], $_POST["email"], $_POST["telefone"], $_POST["tipo"]);
 			mysqli_close($conexao);
 			$conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");

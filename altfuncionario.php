@@ -23,42 +23,42 @@
 	<?php		
 	if($_POST["opt"]=="1") echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Inserir Funcionario</h3>
+			<h3 class="panel-title">Inserir Funcionário</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form">
 				<input type="hidden" id="opt" name="opt">
 				<input type="hidden" id="status" name="status" value="0">
 			  <div class="form-group">
-				<label>Nome</label>
-				<input class="form-control" id="nome" name="nome" placeholder="Entre com o nome">
+				<label>Nome *</label>
+				<input class="form-control" id="nome" name="nome" placeholder="Entre com o nome" required>
 			  </div>
 			  <div class="form-group">
-				<label>Data de nascimento</label>
-				<input class="form-control" id="nasce" placeholder="Entre com a data de nascimento">
+				<label>Data de nascimento *</label>
+				<input class="form-control" id="nasce" placeholder="Entre com a data de nascimento" required>
 			  </div>
 			  <div class="form-group">
-				<label>RG</label>
-				<input class="form-control" id="rg" placeholder="Entre com o RG">
+				<label>RG *</label>
+				<input class="form-control" id="rg" placeholder="Entre com o RG" required>
 			  </div>
 			  <div class="form-group">
-				<label>CPF</label>
-				<input class="form-control" id="cpf" placeholder="Entre com o CPF">
+				<label>CPF *</label>
+				<input class="form-control" id="cpf" placeholder="Entre com o CPF" require>
 			  </div>
 			  <div class="form-group">
-				<label>Endereco</label>
-				<input class="form-control" id="endereco" placeholder="Entre com o endereco">
+				<label>Endereço *</label>
+				<input class="form-control" id="endereco" placeholder="Entre com o endereco" required>
 			  </div>
 			  <div class="form-group">
-				<label>Telefone</label>
-				<input class="form-control" id="telefone" placeholder="Entre com o telefone">
+				<label>Telefone *</label>
+				<input class="form-control" id="telefone" placeholder="Entre com o telefone" required>
 			  </div>
 			  <div class="form-group">
-				<label>Email</label>
-				<input class="form-control" id="email" placeholder="default@default.com">
+				<label>Email *</label>
+				<input class="form-control" id="email" placeholder="default@default.com" required>
 			  </div>
 			  <div style="padding-bottom:15px">
-					<label>Ocupacao</label>
+					<label>Ocupação *</label>
 					<select id="ocupacao" name="ocupacao">
 					<option value="Gerente" title="Gerente">Gerente</option>
 					<option value="Tecnico(a)" title="Tecnico">Tecnico(a)</option>
@@ -66,17 +66,18 @@
 					</select>
 			  </div>
 			  <div class="form-group">
-				<label>Salario base</label>
-				<input class="form-control" id="salario" placeholder="Entre com o salario base">
+				<label>Salário base *</label>
+				<input class="form-control" id="salario" placeholder="Entre com o salario base" required>
 			  </div>
 			  <div class="form-group">
-				<label>Preco da hora trabalhada</label>
-				<input class="form-control" id="prehora" placeholder="Entre com o valor da hora">
+				<label>Preço da hora trabalhada *</label>
+				<input class="form-control" id="prehora" placeholder="Entre com o valor da hora" required>
 			  </div>			  
 			</form>
 			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
 			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 	</div>';
 	if($_POST["opt"] == '2')
 	{	
@@ -86,7 +87,7 @@
 	$consulta = mysqli_fetch_array($result);	
 	echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Visualizar Funcionario</h3>
+			<h3 class="panel-title">Visualizar Funcionário</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form">
@@ -154,7 +155,7 @@
 		$usuario = consultaBD($_POST["selected_row"]);
 		echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Alterar Funcionario</h3>
+			<h3 class="panel-title">Alterar Funcionário</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form" id="formulario" method="post" action="classefun.php">
@@ -162,29 +163,30 @@
 				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
 				<label>Nome *</label>
-				<input class="form-control" id="nome" name="nome" placeholder="Entre com o login" value="'. $usuario->getNome() .'">
+				<input class="form-control" id="nome" name="nome" placeholder="Entre com o login" value="'. $usuario->getNome() .'" required>
 			  </div>
 			  <div class="form-group">
 				<label>Endreco *</label>
-				<input class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereco" value="'. $usuario->getEndereco() .'">
+				<input class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereco" value="'. $usuario->getEndereco() .'" required>
 			  </div>
 			  <div class="form-group">
 				<label>RG</label>
-				<input class="form-control"  id="rg" name="rg" placeholder="Entre com o RG" value="'. $usuario->getRG() .'">
+				<input class="form-control"  id="rg" name="rg" placeholder="Entre com o RG" value="'. $usuario->getRG() .'" required>
 			  </div>
 			  <div class="form-group">
 				<label>Email</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'">
+				<input type="email" class="form-control" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'" required>
 			  </div>
 			  <div class="form-group">
 				<label>Telefone</label>
-				<input class="form-control" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'">
+				<input class="form-control" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" required>
 			  </div>			  
 			  <button type="submit" id="id1" class="btn btn-default">Salvar</button>
 			</form>
 			
 			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
+		<label>Os campos marcados com * são obrigatórios<label/>
 		</div>';
 	}
 

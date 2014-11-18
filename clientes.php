@@ -41,7 +41,7 @@
     <form method="POST" action="altcliente.php" name="alt">
 
       <input type="hidden" id="input_row" name="selected_row" value="0">
-	  <input type="hidden" id="opt" name="opt">
+	    <input type="hidden" id="opt" name="opt">
       <!-- <input type="submit" value="OK"> -->
 
     </form>

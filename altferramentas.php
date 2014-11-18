@@ -23,7 +23,7 @@
 	<?php		
 	if($_POST["opt"]=="1") echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Inserir Ferramentas</h3>
+			<h3 class="panel-title">Inserir Ferramenta</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form" method="post" action="classeferramenta.php">
@@ -58,7 +58,7 @@
 	$consulta = mysqli_fetch_array($result);	
 	echo '<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Visualizar Cliente</h3>
+			<h3 class="panel-title">Visualizar Ferramenta</h3>
 		</div>
 		<div class="panel-body">
 			<form role="form">

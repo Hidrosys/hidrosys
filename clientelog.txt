@@ -18,3 +18,8 @@
 11/17/14 21.39:58<bMon, 17 Nov 2014 21:39:58 +0000>--Alteration of Fabiano by thiago!
 11/17/14 21.40:05<bMon, 17 Nov 2014 21:40:05 +0000>--Alteration of Fabiano by thiago!
 11/17/14 21.40:21<bMon, 17 Nov 2014 21:40:21 +0000>--Alteration of Fabiano by thiago!
+11/18/14 16.17:21<bTue, 18 Nov 2014 16:17:21 +0000>--Insertion of asdf by thiago!
+11/18/14 16.17:31<bTue, 18 Nov 2014 16:17:31 +0000>--Insertion of asdf by thiago!
+11/18/14 16.17:53<bTue, 18 Nov 2014 16:17:53 +0000>--Alteration of asdf by thiago!
+11/18/14 16.18:06<bTue, 18 Nov 2014 16:18:06 +0000>--Alteration of Junior by thiago!
+11/18/14 23.07:20<bTue, 18 Nov 2014 23:07:20 +0000>--Alteration of asdf by thiago!
