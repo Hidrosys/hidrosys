@@ -41,7 +41,7 @@
     public function bdcreate()
     {
       $conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");            
-      $query = "INSERT INTO funcionarios (nome, datanasc, rg, cpf, endereco, email, ocupacao, salario, prehora, telefone, status) VALUES('".$this->nome . "','" . $this->datanasc . "','" . $this->rg . "','" . $this->cpf . "','" . $this->endereco . "','" . $this->email . "','" . $this->ocupacao . "'," . $this->salario . "," . $this->hrtrabalho . ",'" . $this->telefone . "'," . 0 . ")";
+      $query = "INSERT INTO funcionarios (nome, datanasc, rg, cpf, endereco, email, ocupacao, salario, prehora, telefone, status) VALUES('".$this->nome . "'," . $this->datanasc . ",'" . $this->rg . "','" . $this->cpf . "','" . $this->endereco . "','" . $this->email . "','" . $this->ocupacao . "'," . $this->salario . "," . $this->hrtrabalho . ",'" . $this->telefone . "'," . 0 . ")";
       $result = mysqli_query($conexao, $query);
       mysqli_close($conexao);
     }
@@ -138,12 +138,17 @@
   {
     if($_POST["opt"]=="1")
     {
-      criaBD($_POST["nome"], $_POST["datanasc"], $_POST["rg"], $_POST["cpf"], $_POST["endereco"], $_POST["email"], $_POST["ocupacao"], $_POST["salario"], $_POST["prehora"], $_POST["telefone"]);
+      $dia = strtok($_POST["datanasc"], "/");
+      $mes = strtok($_POST["datanasc"], "/");
+      $ano = strtok($_POST["datanasc"], "/");
+      $_POST["datanasc"] = $ano . "-" . $mes . "-" . $dia;
+      criaBD($_POST["nome"], $_POST["datanasc"], $_POST["rg"], $_POST["cpf"], $_POST["endereco"], $_POST["email"], $_POST["ocupacao"], str_replace(",", ".", $_POST["salario"]), str_replace(",", ".", $_POST["prehora"]), $_POST["telefone"]);
       date_default_timezone_set("America/Brasilia");      
       $formated_date  = date("m/d/y G.i:s<br>", time());  
       $arquivo = fopen('funlog.txt','a');
       fwrite($arquivo, $formated_date . "--Insertion of " . $_POST["nome"] . " by " . getLogin() . "!\r\n");
       fclose($arquivo);
+      header("Location: funcionarios.php");
     }
     if($_POST["opt"]=="3")
     {
@@ -151,14 +156,14 @@
       $query = "SELECT * FROM funcionarios WHERE id = ". $_POST["id"];
       $result = mysqli_query($conexao, $query);
       $consulta = mysqli_fetch_array($result);
-	  editaBD($_POST["nome"], $consulta["datanasc"], $_POST["rg"], $consulta["cpf"], $_POST["endereco"], $_POST["email"], $consulta["ocupacao"], $consulta["salario"], $consulta["prehora"], $_POST["telefone"], $consulta["status"], $_POST["id"]);
+	    editaBD($_POST["nome"], $consulta["datanasc"], $_POST["rg"], $consulta["cpf"], $_POST["endereco"], $_POST["email"], $consulta["ocupacao"], str_replace(",", ".", $consulta["salario"]), str_replace(",", ".", $consulta["prehora"]), $_POST["telefone"], $consulta["status"], $_POST["id"]);
       //criaBD($_POST["nome"], $_POST["cep"], $_POST["endereco"], $_POST["email"], $_POST["telefone"], $_POST["cpf"]);
       $formated_date  = date("m/d/y G.i:s<br>", time());  
       $arquivo = fopen('funlog.txt','a');
       fwrite($arquivo, $formated_date . "--Alteration of " . $_POST["nome"] . " by " . getLogin() . "!\r\n");
       fclose($arquivo);
-	  mysqli_close($conexao);
-	  header("Location: funcionarios.php");
+      mysqli_close($conexao);
+	    header("Location: funcionarios.php");
     }
     if($_POST["opt"]=="4")
     {
@@ -171,7 +176,7 @@
       fwrite($arquivo, $formated_date . "--Deletion of " . $consulta["nome"] . " by " . getLogin() . "!\r\n");
       fclose($arquivo);
       mysqli_close($conexao);
-	  deletaBD($_POST["id"]);	  
+  	  deletaBD($_POST["id"]);	  
     }
   } 
 ?>

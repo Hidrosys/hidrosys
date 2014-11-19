@@ -26,56 +26,56 @@
 			<h3 class="panel-title">Inserir Funcionário</h3>
 		</div>
 		<div class="panel-body">
-			<form role="form">
-				<input type="hidden" id="opt" name="opt">
+			<form role="form" method="post" action="classefun.php">
+				<input type="hidden" id="opt" name="opt" value="1">
 				<input type="hidden" id="status" name="status" value="0">
 			  <div class="form-group">
 				<label>Nome *</label>
-				<input class="form-control" id="nome" name="nome" placeholder="Entre com o nome" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o nome" required>
 			  </div>
 			  <div class="form-group">
 				<label>Data de nascimento *</label>
-				<input class="form-control" id="nasce" placeholder="Entre com a data de nascimento" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha a data de nascimento no formato DD/MM/AAAA\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="datanasc" name="datanasc" placeholder="Entre com a data de nascimento" pattern="^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$" required>
 			  </div>
 			  <div class="form-group">
 				<label>RG *</label>
-				<input class="form-control" id="rg" placeholder="Entre com o RG" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o RG\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="rg" name="rg" placeholder="Entre com o RG" required>
 			  </div>
 			  <div class="form-group">
 				<label>CPF *</label>
-				<input class="form-control" id="cpf" placeholder="Entre com o CPF" require>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o CPF no formato xxx.xxx.xxx-xx\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="cpf" name="cpf" placeholder="Entre com o CPF" pattern="[0-9]{3,3}.[0-9]{3,3}.[0-9]{3,3}-[0-9]{2,2}" required>
 			  </div>
 			  <div class="form-group">
 				<label>Endereço *</label>
-				<input class="form-control" id="endereco" placeholder="Entre com o endereco" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o endereço\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="endereco" name="endereco" placeholder="Entre com o endereço" required>
 			  </div>
 			  <div class="form-group">
 				<label>Telefone *</label>
-				<input class="form-control" id="telefone" placeholder="Entre com o telefone" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="Entre com o telefone" pattern=".((10)|([0-9][0-9]).)\\s?9?[0-9][0-9]{3}-[0-9]{4}" required>
 			  </div>
 			  <div class="form-group">
 				<label>Email *</label>
-				<input class="form-control" id="email" placeholder="default@default.com" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente no formato exemplo@servidor.com\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" required>
 			  </div>
 			  <div style="padding-bottom:15px">
 					<label>Ocupação *</label>
 					<select id="ocupacao" name="ocupacao">
 					<option value="Gerente" title="Gerente">Gerente</option>
-					<option value="Tecnico(a)" title="Tecnico">Tecnico(a)</option>
-					<option value="Secretario(a)" title="Secretario">secretario(a)</option>
+					<option value="Tecnico" title="Tecnico">Técnico(a)</option>
+					<option value="Secretario" title="Secretario">Secretário(a)</option>
 					</select>
 			  </div>
 			  <div class="form-group">
 				<label>Salário base *</label>
-				<input class="form-control" id="salario" placeholder="Entre com o salario base" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o salário base corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="salario" name="salario" placeholder="Entre com o salário base" pattern="[0-9]{1,8},?[0-9]{0,4}" required>
 			  </div>
 			  <div class="form-group">
 				<label>Preço da hora trabalhada *</label>
-				<input class="form-control" id="prehora" placeholder="Entre com o valor da hora" required>
-			  </div>			  
-			</form>
-			<button onclick="manda()" id="id1" class="btn btn-default">Inserir</button>
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o preço da hora trabalhada corretamente\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="prehora" name="prehora" placeholder="Entre com o valor da hora" pattern="[0-9]{1,8},?[0-9]{0,4}" required>
+			  </div>
+			  <button type="submit" id="id1" class="btn btn-default">Inserir</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>			  
+			</form>			
 		</div>
 		<label>Os campos marcados com * são obrigatórios<label/>
 	</div>';
@@ -163,28 +163,27 @@
 				<input type="hidden" id="id" name="id" value="'. $_POST["selected_row"] .'">
 			  <div class="form-group">
 				<label>Nome *</label>
-				<input class="form-control" id="nome" name="nome" placeholder="Entre com o login" value="'. $usuario->getNome() .'" required>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o nome do funcionário\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="nome" name="nome" placeholder="Entre com o nome" value="'. $usuario->getNome() .'" required>
 			  </div>
 			  <div class="form-group">
-				<label>Endreco *</label>
-				<input class="form-control" id="endereco" name="endereco" placeholder="Entre com o endereco" value="'. $usuario->getEndereco() .'" required>
+				<label>Endereço *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o endereço\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="endereco" name="endereco" placeholder="Entre com o endereco" value="'. $usuario->getEndereco() .'" required>
 			  </div>
 			  <div class="form-group">
-				<label>RG</label>
-				<input class="form-control"  id="rg" name="rg" placeholder="Entre com o RG" value="'. $usuario->getRG() .'" required>
+				<label>RG *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o RG\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="rg" name="rg" placeholder="Entre com o RG" value="'. $usuario->getRG() .'" required>
 			  </div>
 			  <div class="form-group">
-				<label>Email</label>
-				<input type="email" class="form-control" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'" required>
+				<label>Email *</label>
+				<input type="email" class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o email corretamente no formato exemplo@servidor.com\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="email" name="email" placeholder="default@default.com" value="'. $usuario->getEmail() .'" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$" required>
 			  </div>
 			  <div class="form-group">
-				<label>Telefone</label>
-				<input class="form-control" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" required>
+				<label>Telefone *</label>
+				<input class="form-control" oninvalid="setCustomValidity(\'Por favor, preencha o telefone corretamente no formato (99) 9999-9999\')" onchange="try{setCustomValidity(\'\')}catch(e){}" id="telefone" name="telefone" placeholder="(99) 9999-9999" value="'. $usuario->getTelefone() .'" required>
 			  </div>			  
 			  <button type="submit" id="id1" class="btn btn-default">Salvar</button>
+			  <button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 			</form>
-			
-			<button onclick="volta()" id="id2" class="btn btn-default">Voltar</button>
 		</div>
 		<label>Os campos marcados com * são obrigatórios<label/>
 		</div>';

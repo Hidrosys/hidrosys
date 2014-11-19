@@ -68,13 +68,13 @@
                 <td style="width: 6.5%">
                   ID
                 </td>
-                <td style="width: 45%">
+                <td style="width: 35%">
                   Nome
                 </td>
                 <td style="width: 15%">
                   Telefone
                 </td>
-                <td style="width: 25%">
+                <td style="width: 30%">
                   Email
                 </td>
               </tr>
@@ -110,16 +110,16 @@
                 echo
                 '<tr id="r' . $consulta["id"] . '" onclick="selectRow('.$consulta["id"].');" >
                   <td
-                  <td style="width: 6%">
+                  <td style="width: 4.5%">
                     '.$consulta["id"].
                   '</td>
-                  <td style="width: 42%">
+                  <td style="width: 30%">
                     '.$consulta["nome"].
                   '</td>
-                  <td style="width: 14%">
+                  <td style="width: 15%">
                     '.$consulta["telefone"].
                   '</td>
-                  <td style="width: 14%">
+                  <td style="width: 25%">
                     '.$consulta["email"].
                   '</td>
                 </tr>';
