@@ -85,6 +85,9 @@
 	$query = "SELECT * FROM funcionarios WHERE id = ".$_POST["selected_row"];
 	$result = mysqli_query($conexao, $query);
 	$consulta = mysqli_fetch_array($result);	
+	$ano = strtok($consulta["datanasc"], "-");
+	$mes = strtok($consulta["datanasc"], "-");
+	$dia = strtok($consulta["datanasc"], "-");
 	echo '<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Visualizar Funcionário</h3>
@@ -100,9 +103,9 @@
 				'.$consulta["nome"].'
 			  </div>
 			  <div class="form-group">
-				<label>Data de nascimento</label>
-				'.$consulta["datanasc"].'
-			  </div>
+				<label>Data de nascimento</label> '.
+				$dia.'/'.$mes.'/'.$ano
+			  .'</div>
 			  <div class="form-group">
 				<label>RG</label>
 				'.$consulta["rg"].'
@@ -112,7 +115,7 @@
 				'.$consulta["cpf"].'
 			  </div>
 			  <div class="form-group">
-				<label>Endereco</label>
+				<label>Endereço</label>
 				'.$consulta["endereco"].'
 			  </div>
 			  <div class="form-group">
@@ -124,15 +127,15 @@
 				'.$consulta["email"].'
 			  </div>
 			  <div class="form-group">
-				<label>ocupacao</label>
+				<label>Ocupação</label>
 				'.$consulta["ocupacao"].'
 			  </div>
 			  <div class="form-group">
-				<label>Salario base</label>
+				<label>Salário base</label> R$
 				'.$consulta["salario"].'
 			  </div>
 			  <div class="form-group">
-				<label>Preco da hora trabalhada</label>
+				<label>Preço da hora trabalhada</label> R$
 				'.$consulta["prehora"].'
 			  </div>
 			  <div class="form-group">
