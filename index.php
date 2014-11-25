@@ -20,8 +20,85 @@
   	<?php 
       include("header.php");
   	?>
+	<div class="col-xs-4" style="min-height: 32px; max-height: 32px; margin: 2% auto auto; float: none; width: 950px;">
+      <div class="panel panel-default">
+        <div style="height: 32px;">
+		<label> Serviços Pendentes </label>
+		</div>
+	  </div>
+	</div>
 
-    <img src="imagens/hidrolar.jpg" style="margin-top:150px; margin-left:250px;">
+    <div class="col-xs-4" style="min-height: 410px; max-height: 410px; margin: 2% auto auto; float: none; width: 950px;">
+      <div class="panel panel-default">
+        <div style="height: 35px;">
+          <table class="table table-striped">
+            <thead>
+              <tr class="info">
+                <td style="width: 6.5%">
+                  ID
+                </td>
+                <td style="width: 45%">
+                  ID Cliente
+                </td>
+                <td style="width: 15%">
+                  Data
+                </td>
+                <td style="width: 16%">
+                  Valor
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div style="min-height: 360px; max-height: 360px; overflow-y: scroll; width: 100%">
+        <table class="table header-fixed" data-single-select="true">
+          <body>
+            <?php
+              $conexao = mysqli_connect("localhost", "root", "123456", "hidrosys");
+              $query = "SELECT * FROM servicos WHERE deleted = 0 ";
+
+              if(isset($_GET["tipo"]))
+              {
+                if($_GET["tipo"] == "id" && isset($_GET["busca"]))
+                {
+                  $query = $query . " AND id LIKE ". $_GET["busca"];
+                }
+                else
+                {
+                  $query = $query . " AND " . $_GET["tipo"] . " LIKE '". $_GET["busca"] ."%'";
+                }
+              }
+
+              $query = $query . " ORDER BY id";
+
+              $result = mysqli_query($conexao, $query);
+
+              if($result)
+              while($consulta = mysqli_fetch_array($result))
+              {
+                echo
+                '<tr id="r' . $consulta["id"] . '" onclick="selectRow('.$consulta["id"].');" >
+                  <td
+                  <td style="width: 6%">
+                    '.$consulta["id"].
+                  '</td>
+                  <td style="width: 42%">
+                    '.$consulta["id_cliente"].
+                  '</td>
+                  <td style="width: 14%">
+                    '.$consulta["dia"]. "/" . $consulta["mes"] . "/" . $consulta["ano"] .
+                  '</td>
+                  <td style="width: 14%">
+                    '.$consulta["valor"].
+                  '</td>
+                </tr>';
+              }
+            ?>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
