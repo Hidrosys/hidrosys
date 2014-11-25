@@ -39,7 +39,7 @@
               '<li '. 
                 ($from=="clientes"? 'class="active"><a href="#">Clientes</a></li>': '><a href="clientes.php">Clientes</a></li>').
               '<li '.
-                ($from=="servicos"? 'class="active"><a href="#">Serviços</a></li>': '><a href="#">Serviços</a></li>').
+                ($from=="servicos"? 'class="active"><a href="#">Serviços</a></li>': '><a href="servicos.php">Serviços</a></li>').
               '<li '. 
                 ($from=="funcionarios"? 'class="active"><a href="#">Funcionários</a></li>': '><a href="funcionarios.php">Funcionários</a></li>').
               '<li '. 
@@ -47,7 +47,7 @@
               '<li '.
                 ($from=="pecas"? 'class="active"><a href="#">Peças</a></li>': '><a href="pecas.php">Peças</a></li>').
               '<li '.
-                ($from=="relatorios"? 'class="active"><a href="#">Relatórios</a></li>': '><a href="#">Relatórios</a></li>').
+                ($from=="relatorios"? 'class="active"><a href="#">Relatórios</a></li>': '><a href="relatorios.php">Relatórios</a></li>').
               '<li '.
                 ($from=="usuarios"? 'class="active"><a href="#">Usuários</a></li>': '><a href="usuarios.php">Usuários</a></li>')
               ?>

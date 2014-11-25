@@ -41,7 +41,7 @@
     <form method="POST" action="altservicos.php" name="alt">
 
       <input type="hidden" id="input_row" name="selected_row" value="0">
-	  <input type="hidden" id="opt" name="opt">
+	    <input type="hidden" id="opt" name="opt">
       <!-- <input type="submit" value="OK"> -->
 
     </form>
@@ -134,7 +134,7 @@
       <div class="panel-body">
         <button type="button" class="btn btn-primary" onclick='adicionar()' id='1' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-plus" style="padding-right: 10px"></span>Adicionar</button>
         <button type="button" class="btn btn-primary" onclick='vizu()' id='2' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-eye-open" style="padding-right: 10px"></span>Visualizar</button>
-        <button type="button" class="btn btn-primary" onclick='removerr()' id='Botao4' style="width: 150px; float: left;"><span class="glyphicon glyphicon-minus" style="padding-right: 10px"></span>Remover</button>
+        <button type="button" class="btn btn-primary" onclick='removerr()' id='Botao4' style="width: 150px; float: left;"><span class="glyphicon glyphicon-minus" style="padding-right: 10px"></span>Finalizar</button>
 	  </div>
 	  <div class="panel-body">
 		<button type="button" class="btn btn-primary" onclick='addfunc()' id='Botao5' style="width: 150px; float: left; margin-right: 85px;"><span class="glyphicon glyphicon-plus" style="padding-right: 10px"></span>Funcionários</button>
